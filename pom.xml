@@ -10,14 +10,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>shuaicj.hello</groupId>
-    <artifactId>parent</artifactId>
+    <artifactId>hello-parent</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>math</module>
-        <module>rest</module>
-        <module>sshj</module>
+        <module>hello-math</module>
+        <module>hello-rest</module>
+        <module>hello-sshj</module>
     </modules>
 
     <properties>
