@@ -18,6 +18,7 @@
         <module>hello-math</module>
         <module>hello-rest</module>
         <module>hello-sshj</module>
+        <module>hello-sqlite</module>
     </modules>
 
     <properties>
