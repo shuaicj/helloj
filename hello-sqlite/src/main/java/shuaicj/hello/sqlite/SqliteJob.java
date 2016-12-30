@@ -1,7 +1,6 @@
 package shuaicj.hello.sqlite;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.concurrent.CountDownLatch;
@@ -16,14 +15,14 @@ public class SqliteJob implements Runnable {
     private Connection conn;
     private CountDownLatch latch;
     private boolean readonly;
-    private String table;
+//    private String table;
     private String sql;
 
     public SqliteJob(Connection conn, CountDownLatch latch, boolean readonly, String table) {
         this.conn = conn;
         this.latch = latch;
         this.readonly = readonly;
-        this.table = table;
+//        this.table = table;
         if (readonly) {
             sql = "select count(*) as num from " + table;
         } else {
@@ -37,12 +36,14 @@ public class SqliteJob implements Runnable {
         for (int i = 0; i < max; i++) {
             try (Statement statement = conn.createStatement()) {
                 if (readonly) {
-                    ResultSet rs = statement.executeQuery(sql);
-                    int num = rs.getInt("num");
-                    System.out.println(String.format("[%s] [read %s] count(*): %d", Thread.currentThread().getName(), table, num));
+                    statement.executeQuery(sql);
+//                    ResultSet rs = statement.executeQuery(sql);
+//                    int num = rs.getInt("num");
+//                    System.out.println(String.format("[%s] [read %s] count(*): %d", Thread.currentThread().getName(), table, num));
                 } else {
-                    int num = statement.executeUpdate(sql);
-                    System.out.println(String.format("[%s] [insert %s] affected: %d", Thread.currentThread().getName(), table, num));
+                    statement.executeUpdate(sql);
+//                    int num = statement.executeUpdate(sql);
+//                    System.out.println(String.format("[%s] [insert %s] affected: %d", Thread.currentThread().getName(), table, num));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

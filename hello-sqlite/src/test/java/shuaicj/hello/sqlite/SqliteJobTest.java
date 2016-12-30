@@ -18,6 +18,8 @@ import java.util.concurrent.CountDownLatch;
 public class SqliteJobTest {
 
     private static final String DB_NAME = "sqlite.db";
+    private static final String DB_NAME_2 = "sqlite2.db";
+    private static final String DB_ALIAS = "d2";
 
     static {
         try {
@@ -31,10 +33,27 @@ public class SqliteJobTest {
         return DriverManager.getConnection("jdbc:sqlite:" + DB_NAME);
     }
 
-    private void initTable(String name) throws SQLException {
+    private void initTable(String table) throws SQLException {
         Connection conn = newConnection();
         Statement statement = conn.createStatement();
-        statement.executeUpdate("create table if not exists " + name + " (id integer, name string)");
+        statement.execute("create table if not exists " + table + " (id integer, name string)");
+        statement.close();
+        conn.close();
+    }
+
+    private Connection newConnectionForMultiDb() throws SQLException {
+        Connection conn = newConnection();
+        Statement statement = conn.createStatement();
+        statement.execute(String.format("attach database '%s' as %s", DB_NAME_2, DB_ALIAS));
+        statement.close();
+        return conn;
+    }
+
+    private void initTableForMultiDb(String table) throws SQLException {
+        Connection conn = newConnectionForMultiDb();
+        Statement statement = conn.createStatement();
+        statement.execute("create table if not exists " + table + " (id integer, name string)");
+        statement.execute("create table if not exists " + DB_ALIAS + "." + table + " (id integer, name string)");
         statement.close();
         conn.close();
     }
@@ -46,6 +65,7 @@ public class SqliteJobTest {
     public void oneConnectionOneTable() throws SQLException, InterruptedException {
         String table = "person";
         initTable(table);
+//        initTable(table);
         int num = 10;
         Connection conn = newConnection();
         CountDownLatch latch = new CountDownLatch(num);
@@ -60,6 +80,8 @@ public class SqliteJobTest {
     public void oneConnectionMultiTable() throws SQLException, InterruptedException {
         String table1 = "person1";
         String table2 = "person2";
+//        initTableForMultiDb(table1);
+//        initTableForMultiDb(table2);
         initTable(table1);
         initTable(table2);
         int num = 10;
@@ -114,8 +136,47 @@ public class SqliteJobTest {
         }
     }
 
+//    @Test
+    public void oneConnectionMultiDbRR() throws SQLException, InterruptedException {
+        oneConnectionMultiDb(true, true);
+    }
+
+//    @Test
+    public void oneConnectionMultiDbRW() throws SQLException, InterruptedException {
+        oneConnectionMultiDb(true, false);
+    }
+
+//    @Test
+    public void oneConnectionMultiDbWW() throws SQLException, InterruptedException {
+        oneConnectionMultiDb(false, false);
+    }
+
+//    @Test
+    public void oneConnectionMultiDbWR() throws SQLException, InterruptedException {
+        oneConnectionMultiDb(false, true);
+    }
+
+    private void oneConnectionMultiDb(boolean readonly1, boolean readonly2) throws SQLException, InterruptedException {
+        String table = "person";
+        String table2 = DB_ALIAS + ".person";
+        initTableForMultiDb(table);
+        int num = 10;
+        Connection conn = newConnectionForMultiDb();
+        CountDownLatch latch = new CountDownLatch(num);
+        for (int i = 0; i < num; i++) {
+            if (i < num / 2) {
+                new Thread(new SqliteJob(conn, latch, readonly1, table)).start();
+            } else {
+                new Thread(new SqliteJob(conn, latch, readonly2, table2)).start();
+            }
+        }
+        latch.await();
+        conn.close();
+    }
+
     @AfterClass
     public static void deleteDbFile() {
         new File(DB_NAME).delete();
+        new File(DB_NAME_2).delete();
     }
 }
