@@ -24,6 +24,7 @@
     <properties>
         <java.version>1.8</java.version>
         <sshj.version>0.18.0</sshj.version>
+        <assertj.version>3.6.1</assertj.version>
     </properties>
 
 </project>
