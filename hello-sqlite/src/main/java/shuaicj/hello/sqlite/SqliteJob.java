@@ -6,7 +6,7 @@ import java.sql.Statement;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * Description.
+ * Do some reading or writing through sqlite.
  *
  * @author shuaicj 2016/12/29
  */

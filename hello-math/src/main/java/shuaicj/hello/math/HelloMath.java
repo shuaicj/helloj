@@ -1,7 +1,7 @@
 package shuaicj.hello.math;
 
 /**
- * Description.
+ * Simple math methods.
  *
  * @author shuaicj 2016/12/28
  */

@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.within;
 
 /**
- * Description.
+ * Test HelloMath.
  *
  * @author shuaicj 2016/12/28
  */

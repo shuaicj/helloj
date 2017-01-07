@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Description.
+ * Test the library: SSHJ.
  *
  * @author shuaicj 2016/12/28
  */

@@ -11,7 +11,7 @@ import java.sql.Statement;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * Description.
+ * Test SqliteJob.
  *
  * @author shuaicj 2016/12/29
  */

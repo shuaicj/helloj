@@ -1,7 +1,7 @@
 package shuaicj.hello.rest;
 
 /**
- * Description.
+ * A java bean representing a greeting.
  *
  * @author shuaicj 2016/12/28
  */

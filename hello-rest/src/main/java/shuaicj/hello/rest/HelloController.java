@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * Description.
+ * Simple spring boot rest controller.
  *
  * @author shuaicj 2016/12/28
  */

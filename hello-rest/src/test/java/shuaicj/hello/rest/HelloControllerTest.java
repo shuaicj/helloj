@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Description.
+ * Test HelloController.
  *
  * @author shuaicj 2016/12/28
  */

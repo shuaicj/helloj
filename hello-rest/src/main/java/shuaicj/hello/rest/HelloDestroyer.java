@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PreDestroy;
 
 /**
- * Description.
+ * Test PreDestroy.
  *
  * @author shuaicj 2017/01/02
  */

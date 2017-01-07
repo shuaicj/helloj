@@ -6,7 +6,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 /**
- * Description.
+ * Spring boot app.
  *
  * @author shuaicj 2016/12/28
  */
