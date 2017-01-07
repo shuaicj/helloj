@@ -19,6 +19,7 @@
         <module>hello-rest</module>
         <module>hello-sshj</module>
         <module>hello-sqlite</module>
+        <module>hello-cpu-num</module>
     </modules>
 
     <properties>
