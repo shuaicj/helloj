@@ -19,7 +19,8 @@ public class HelloMath {
         if (v <= 1 || offset <= 0 || offset >= 1) {
             throw new IllegalArgumentException();
         }
-        double start = 0, end = v, mid = 0;
+        double start = 0, end = v;
+        double mid;
         while (true) {
             mid = (start + end) / 2;
             if ((mid - offset) * (mid - offset) < v && (mid + offset) * (mid + offset) > v) {
