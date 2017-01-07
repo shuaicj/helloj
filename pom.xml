@@ -20,6 +20,7 @@
         <module>hello-sshj</module>
         <module>hello-sqlite</module>
         <module>hello-cpu-num</module>
+        <module>hello-memory-leak</module>
     </modules>
 
     <properties>
