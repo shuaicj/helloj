@@ -21,6 +21,7 @@
         <module>hello-sqlite</module>
         <module>hello-cpu-num</module>
         <module>hello-memory-leak</module>
+        <module>hello-deadlock</module>
     </modules>
 
     <properties>
