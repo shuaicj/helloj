@@ -10,13 +10,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Test HelloController.
+ * Test HelloController via RestTemplate.
  *
  * @author shuaicj 2016/12/28
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class HelloControllerTest {
+public class HelloControllerClientTest {
 
     @Autowired
     private TestRestTemplate rest;
