@@ -22,6 +22,7 @@
         <module>hello-cpu-num</module>
         <module>hello-memory-leak</module>
         <module>hello-deadlock</module>
+        <module>hello-schedule</module>
     </modules>
 
     <properties>
