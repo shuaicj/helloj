@@ -3,10 +3,14 @@ package shuaicj.hello.commons.cli;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.junit.Test;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -21,8 +25,10 @@ public class CommonsCliTest {
     @Test
     public void testShortOption() throws Exception {
         Options options = new Options();
-        options.addOption(Option.builder("a").build());
-        options.addOption(Option.builder("b").build());
+//        options.addOption(Option.builder("a").build());
+//        options.addOption(Option.builder("b").build());
+        options.addOption("a", "description of a");
+        options.addOption("b", "description of b");
         assertThat(parse(options, new String[]{"-a"}).hasOption("a")).isTrue();
         assertThat(parse(options, new String[]{"-ab"}).hasOption("a")).isTrue();
         assertThat(parse(options, new String[]{"-ab"}).hasOption("b")).isTrue();
@@ -32,7 +38,8 @@ public class CommonsCliTest {
     @Test
     public void testLongOption() throws Exception {
         Options options = new Options();
-        options.addOption(Option.builder().longOpt("all-all").build());
+//        options.addOption(Option.builder().longOpt("all-all").build());
+        options.addOption(null, "all-all", false, "description of a");
         assertThat(parse(options, new String[]{"-all-all"}).hasOption("all-all")).isTrue();
         assertThat(parse(options, new String[]{"--all-all"}).hasOption("all-all")).isTrue();
     }
@@ -80,6 +87,28 @@ public class CommonsCliTest {
         assertThat(parse(options, new String[]{"--all-all", "me,you,him"}).getOptionValues("all-all")).containsExactly("me", "you", "him");
         assertThat(parse(options, new String[]{"--all-all", "me", "you", "him"}).getOptionValues("all-all")).containsExactly("me", "you", "him");
         assertThatExceptionOfType(ParseException.class).isThrownBy(() -> parse(options, new String[]{"--all-all"}));
+    }
+
+    @Test
+    public void testPrintUsage() throws Exception {
+        Options options = new Options();
+        options.addOption("a", "description of a");
+        options.addOption("b", "bbbb", false, "description of b");
+        options.addOption("c", "ccc", true, "description of c");
+        HelpFormatter formatter = new HelpFormatter();
+        StringWriter writer = new StringWriter();
+        formatter.printHelp(new PrintWriter(writer),
+                HelpFormatter.DEFAULT_WIDTH,
+                "cmd",
+                "",
+                options,
+                HelpFormatter.DEFAULT_LEFT_PAD,
+                HelpFormatter.DEFAULT_DESC_PAD,
+                "");
+        assertThat(writer.toString()).isEqualTo("usage: cmd\n" +
+                " -a               description of a\n" +
+                " -b,--bbbb        description of b\n" +
+                " -c,--ccc <arg>   description of c\n");
     }
 
     private CommandLine parse(Options options, String[] args) throws ParseException {
