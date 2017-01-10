@@ -24,6 +24,7 @@
         <module>hello-deadlock</module>
         <module>hello-schedule</module>
         <module>hello-commons-cli</module>
+        <module>hello-maven-main</module>
     </modules>
 
     <properties>
