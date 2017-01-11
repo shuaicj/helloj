@@ -15,6 +15,7 @@
     <modules>
         <module>hello-maven-plugin-jar</module>
         <module>hello-maven-plugin-assembly</module>
+        <module>hello-maven-plugin-compiler</module>
     </modules>
 
 </project>
