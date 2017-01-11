@@ -3,28 +3,24 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>hello-parent</artifactId>
+        <artifactId>hello-maven-plugin</artifactId>
         <groupId>shuaicj.hello</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>hello-maven-main</artifactId>
+    <artifactId>hello-maven-plugin-assembly</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>shuaicj.hello</groupId>
+            <artifactId>hello-math</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
-            <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-jar-plugin</artifactId>-->
-                <!--<configuration>-->
-                    <!--<archive>-->
-                        <!--<manifest>-->
-                            <!--<mainClass>shuaicj.hello.maven.Application</mainClass>-->
-                        <!--</manifest>-->
-                    <!--</archive>-->
-                    <!--<finalName></finalName>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
@@ -35,7 +31,7 @@
                     <appendAssemblyId>false</appendAssemblyId>
                     <archive>
                         <manifest>
-                            <mainClass>shuaicj.hello.maven.Application</mainClass>
+                            <mainClass>shuaicj.hello.maven.plugin.assembly.Application</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -51,13 +47,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <dependencies>
-        <dependency>
-            <groupId>shuaicj.hello</groupId>
-            <artifactId>hello-math</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-    </dependencies>
 
 </project>
