@@ -36,6 +36,7 @@
         <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
         <maven-assembly-plugin.version>2.6</maven-assembly-plugin.version>
         <maven-jar-plugin.version>2.6</maven-jar-plugin.version>
+        <maven-shade-plugin.version>2.4.3</maven-shade-plugin.version>
     </properties>
 
     <repositories>
