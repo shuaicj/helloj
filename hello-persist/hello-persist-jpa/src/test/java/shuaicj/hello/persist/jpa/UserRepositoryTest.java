@@ -1,10 +1,9 @@
 package shuaicj.hello.persist.jpa;
 
-import org.junit.Before;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -26,8 +25,8 @@ public class UserRepositoryTest {
     @Autowired
     private UserRepository repo;
 
-    @Before
-    public void setUp() throws Exception {
+    @After
+    public void tearDown() throws Exception {
         repo.deleteByUsername(NAME);
     }
 
