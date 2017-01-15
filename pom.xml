@@ -25,6 +25,7 @@
         <module>hello-schedule</module>
         <module>hello-commons-cli</module>
         <module>hello-maven-plugin</module>
+        <module>hello-persist</module>
     </modules>
 
     <properties>

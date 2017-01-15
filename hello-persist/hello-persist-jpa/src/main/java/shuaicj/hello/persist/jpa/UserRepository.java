@@ -1,0 +1,18 @@
+package shuaicj.hello.persist.jpa;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import javax.transaction.Transactional;
+
+/**
+ * JPA interface for user.
+ *
+ * @author shuaicj 2017/01/15
+ */
+public interface UserRepository extends JpaRepository<User, Integer> {
+
+    User findByUsername(String username);
+
+    @Transactional
+    void deleteByUsername(String username);
+}
