@@ -40,6 +40,41 @@
         <maven-shade-plugin.version>2.4.3</maven-shade-plugin.version>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>h2</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <spring.profiles.active>h2</spring.profiles.active>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.h2database</groupId>
+                    <artifactId>h2</artifactId>
+                    <version>${h2.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>mysql</id>
+            <properties>
+                <spring.profiles.active>mysql</spring.profiles.active>
+                <spring.datasource.url>jdbc:mysql://localhost/hellomysql?useSSL=false</spring.datasource.url>
+                <spring.datasource.username>hellomysqlu</spring.datasource.username>
+                <spring.datasource.password>hellomysqlp</spring.datasource.password>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                    <version>${mysql.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+
     <repositories>
         <repository>
             <id>spring-releases</id>
