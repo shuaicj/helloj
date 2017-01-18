@@ -4,13 +4,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Test UserRepository.
+ * Test spring boot db init.
  *
  * @author shuaicj 2017/01/15
  */
@@ -29,5 +30,10 @@ public class DbInitTest {
         int count = jdbcTemplate.queryForObject("select count(*) from user where username = ? and password = ?",
                 Integer.class, NAME, PASS);
         assertThat(count).isEqualTo(1);
+    }
+
+    @Test(expected = DuplicateKeyException.class)
+    public void unique() throws Exception {
+        jdbcTemplate.update("insert into user(username, password) values (?, ?)", NAME, "adf");
     }
 }
