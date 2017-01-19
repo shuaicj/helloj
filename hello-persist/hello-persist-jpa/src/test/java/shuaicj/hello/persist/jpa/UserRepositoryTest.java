@@ -1,6 +1,6 @@
 package shuaicj.hello.persist.jpa;
 
-import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +25,21 @@ public class UserRepositoryTest {
     @Autowired
     private UserRepository repo;
 
-    @After
-    public void tearDown() throws Exception {
+    @Before
+    public void setUp() throws Exception {
         repo.deleteByUsername(NAME);
+        repo.save(new User(NAME, PASS));
+    }
+
+    @Test
+    public void delete() throws Exception {
+        repo.deleteByUsername(NAME);
+        assertThat(repo.findByUsername(NAME)).isNull();
     }
 
     @Test
     public void save() throws Exception {
+        repo.deleteByUsername(NAME);
         repo.save(new User(NAME, PASS));
         User u = repo.findByUsername(NAME);
         assertThat(u).isNotNull();
@@ -42,13 +50,5 @@ public class UserRepositoryTest {
     @Test(expected = DataIntegrityViolationException.class)
     public void duplicate() throws Exception {
         repo.save(new User(NAME, PASS));
-        repo.save(new User(NAME, PASS));
-    }
-
-    @Test
-    public void delete() throws Exception {
-        repo.save(new User(NAME, PASS));
-        repo.deleteByUsername(NAME);
-        assertThat(repo.findByUsername(NAME)).isNull();
     }
 }
