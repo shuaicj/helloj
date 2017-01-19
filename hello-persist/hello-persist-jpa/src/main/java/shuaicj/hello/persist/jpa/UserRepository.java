@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
  *
  * @author shuaicj 2017/01/15
  */
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByUsername(String username);
 

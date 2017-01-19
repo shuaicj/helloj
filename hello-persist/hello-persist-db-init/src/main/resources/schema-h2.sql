@@ -1,7 +1,7 @@
 drop table if exists user;
 
 create table user (
-    id int primary key auto_increment,
+    id bigint primary key auto_increment,
     username varchar(32) not null unique,
     password varchar(60) not null,
     created_time timestamp not null default current_timestamp,

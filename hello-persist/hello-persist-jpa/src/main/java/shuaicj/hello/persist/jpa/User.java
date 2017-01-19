@@ -14,7 +14,7 @@ public class User {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
 
     @Column(nullable = false, unique = true, updatable = false, length = 32)
     private String username;
@@ -48,11 +48,11 @@ public class User {
         updatedTime = new Date();
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
