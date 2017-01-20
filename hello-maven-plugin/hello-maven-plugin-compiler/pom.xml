@@ -11,6 +11,13 @@
 
     <artifactId>hello-maven-plugin-comipler</artifactId>
 
+    <!--<properties>-->
+        <!--<maven.compiler.source>1.7</maven.compiler.source>-->
+        <!--<maven.compiler.target>1.7</maven.compiler.target>-->
+    <!--</properties>-->
+
+    <!-- it's the same effect either setting properties as above or configuring directly as following -->
+
     <build>
         <plugins>
             <plugin>

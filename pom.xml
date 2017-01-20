@@ -26,6 +26,7 @@
         <module>hello-commons-cli</module>
         <module>hello-maven-plugin</module>
         <module>hello-persist</module>
+        <module>hello-resource-path</module>
     </modules>
 
     <properties>
