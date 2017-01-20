@@ -27,6 +27,7 @@
         <module>hello-maven-plugin</module>
         <module>hello-persist</module>
         <module>hello-resource-path</module>
+        <module>hello-digest-utils</module>
     </modules>
 
     <properties>
