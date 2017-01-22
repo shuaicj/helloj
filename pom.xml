@@ -28,12 +28,14 @@
         <module>hello-persist</module>
         <module>hello-resource-path</module>
         <module>hello-digest-utils</module>
+        <module>hello-mockito</module>
     </modules>
 
     <properties>
         <java.version>1.8</java.version>
         <sshj.version>0.18.0</sshj.version>
         <assertj.version>3.6.1</assertj.version>
+        <mockito.version>2.6.5</mockito.version>
         <commons-cli.version>1.3.1</commons-cli.version>
         <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
         <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
