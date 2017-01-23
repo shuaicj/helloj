@@ -61,6 +61,7 @@ public class MockitoTest {
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
+    @SuppressWarnings("unchecked")
     public void testExceptionClass() throws Exception {
         List list = mock(List.class);
         when(list.get(1)).thenThrow(IndexOutOfBoundsException.class);
@@ -98,7 +99,7 @@ public class MockitoTest {
         when(list.get(anyInt())).thenAnswer(new Answer<String>() {
             @Override
             public String answer(InvocationOnMock invocationOnMock) throws Throwable {
-                int index = invocationOnMock.getArgument(0);
+                int index = invocationOnMock.getArgumentAt(0, Integer.class);
                 return index <= 1 ? "abc" : "def";
             }
         });
@@ -113,7 +114,7 @@ public class MockitoTest {
     public void testAnswerLamda() throws Exception {
         List<String> list = mock(List.class);
         when(list.get(anyInt())).thenAnswer(invocationOnMock -> {
-            int index = invocationOnMock.getArgument(0);
+            int index = invocationOnMock.getArgumentAt(0, Integer.class);
             return index <= 1 ? "abc" : "def";
         });
         assertThat(list.get(0)).isEqualTo("abc");
