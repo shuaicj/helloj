@@ -15,6 +15,7 @@
     <modules>
         <module>hello-persist-jpa</module>
         <module>hello-persist-db-init</module>
+        <module>hello-persist-jdbc-template</module>
     </modules>
 
 
