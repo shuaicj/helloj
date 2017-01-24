@@ -7,8 +7,8 @@ package shuaicj.hello.persist.jdbc.template;
  */
 public interface UserDao {
 
-    // return id
-    long save(User user);
+    // return saved user
+    User save(User user);
 
     // return user found
     User findByUsername(String username);

@@ -47,6 +47,15 @@ public class UserRepositoryTest {
         assertThat(u.getPassword()).isEqualTo(PASS);
     }
 
+    @Test
+    public void saveReturnsId() throws Exception {
+        repo.deleteByUsername(NAME);
+        repo.deleteByUsername("newuser");
+        User u1 = repo.save(new User(NAME, PASS));
+        User u2 = repo.save(new User("newuser", "newpass"));
+        assertThat(u2.getId()).isEqualTo(u1.getId() + 1);
+    }
+
     @Test(expected = DataIntegrityViolationException.class)
     public void duplicate() throws Exception {
         repo.save(new User(NAME, PASS));

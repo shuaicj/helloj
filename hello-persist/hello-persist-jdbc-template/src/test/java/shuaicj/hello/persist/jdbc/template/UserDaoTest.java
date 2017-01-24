@@ -52,10 +52,10 @@ public class UserDaoTest {
     @Test
     public void saveReturnsId() throws Exception {
         jdbcDelete(NAME);
-        long id1 = dao.save(new User(NAME, PASS));
-        long id2 = dao.save(new User("newuser", "newpass"));
-        assertThat(id2).isEqualTo(id1 + 1);
-        System.out.println("id " + id1 + " " + id2);
+        jdbcDelete("newuser");
+        User u1 = dao.save(new User(NAME, PASS));
+        User u2 = dao.save(new User("newuser", "newpass"));
+        assertThat(u2.getId()).isEqualTo(u1.getId() + 1);
     }
 
     @Test

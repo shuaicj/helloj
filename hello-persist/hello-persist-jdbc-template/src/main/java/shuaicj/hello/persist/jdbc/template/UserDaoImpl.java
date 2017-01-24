@@ -23,7 +23,7 @@ public class UserDaoImpl implements UserDao {
     private JdbcTemplate jdbc;
 
     @Override
-    public long save(User user) {
+    public User save(User user) {
         String sql = "insert into user(username, password) values(?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbc.update(conn -> {
@@ -32,7 +32,12 @@ public class UserDaoImpl implements UserDao {
             ps.setString(2, user.getPassword());
             return ps;
         }, keyHolder);
-        return keyHolder.getKey().longValue();
+
+        User u = new User();
+        u.setId(keyHolder.getKey().longValue());
+        u.setUsername(user.getUsername());
+        u.setPassword(user.getPassword());
+        return u;
     }
 
     @Override
