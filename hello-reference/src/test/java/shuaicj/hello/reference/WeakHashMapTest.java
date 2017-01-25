@@ -12,7 +12,7 @@ import static org.junit.Assert.assertTrue;
  *
  * @author shuaicj 2017/01/25
  */
-public class TestWeakHashMap {
+public class WeakHashMapTest {
 
     private static final class Person {}
 

@@ -30,6 +30,7 @@
         <module>hello-digest-utils</module>
         <module>hello-mockito</module>
         <module>hello-reference</module>
+        <module>hello-float</module>
     </modules>
 
     <properties>
