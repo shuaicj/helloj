@@ -29,6 +29,7 @@
         <module>hello-resource-path</module>
         <module>hello-digest-utils</module>
         <module>hello-mockito</module>
+        <module>hello-reference</module>
     </modules>
 
     <properties>
