@@ -31,6 +31,7 @@
         <module>hello-mockito</module>
         <module>hello-reference</module>
         <module>hello-float</module>
+        <module>hello-override</module>
     </modules>
 
     <properties>
