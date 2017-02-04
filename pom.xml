@@ -32,6 +32,7 @@
         <module>hello-reference</module>
         <module>hello-float</module>
         <module>hello-override</module>
+        <module>hello-threadpool</module>
     </modules>
 
     <properties>
