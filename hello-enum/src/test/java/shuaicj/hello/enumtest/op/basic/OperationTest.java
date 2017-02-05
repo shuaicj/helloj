@@ -1,4 +1,4 @@
-package shuaicj.hello.enumtest;
+package shuaicj.hello.enumtest.op.basic;
 
 import org.junit.Test;
 

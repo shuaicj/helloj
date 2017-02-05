@@ -1,4 +1,4 @@
-package shuaicj.hello.enumtest;
+package shuaicj.hello.enumtest.abcde;
 
 /**
  * An enum representing A, B, C, D, E.
