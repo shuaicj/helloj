@@ -34,6 +34,7 @@
         <module>hello-override</module>
         <module>hello-threadpool</module>
         <module>hello-string</module>
+        <module>hello-enum</module>
     </modules>
 
     <properties>
