@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="TRACE">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%p] %msg [%t]%n"/>
+        </Console>
+        <Routing name="Routing">
+            <Routes pattern="$${sys:shuaicj.log.rolling}">
+                <Route key="rollingByDate">
+                    <RollingFile name="RollingByDate" fileName="/opt/asample/logs/${sys:shuaicj.log.path}"
+                                 filePattern="/opt/asample/logs/${sys:shuaicj.log.path}.%d{yyyy-MM-dd}.log">
+                        <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%p] %msg [%t]%n"/>
+                        <TimeBasedTriggeringPolicy interval="1"/>
+                    </RollingFile>
+                </Route>
+                <Route key="rollingBySize">
+                    <RollingFile name="RollingByDate" fileName="/opt/asample/logs/${sys:shuaicj.log.path}"
+                                 filePattern="/opt/asample/logs/${sys:shuaicj.log.path}.%d{yyyy-MM-dd}_%i.log">
+                        <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%p] %msg [%t]%n"/>
+                        <SizeBasedTriggeringPolicy size="${sys:shuaicj.log.size} MB"/>
+                        <DefaultRolloverStrategy max="${sys:shuaicj.log.max}"/>
+                    </RollingFile>
+                </Route>
+                <Route>
+                    <RollingFile name="RollingDefault" fileName="/opt/asample/logs/default.log"
+                                 filePattern="/opt/asample/logs/default.log.%d{yyyy-MM-dd}.log">
+                        <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%p] %msg [%t]%n"/>
+                        <TimeBasedTriggeringPolicy interval="1"/>
+                    </RollingFile>
+                </Route>
+            </Routes>
+        </Routing>
+    </Appenders>
+    <Loggers>
+        <Root level="trace">
+            <Appender-ref ref="Console"/>
+            <Appender-ref ref="Routing"/>
+        </Root>
+    </Loggers>
+</Configuration>

@@ -35,6 +35,8 @@
         <module>hello-threadpool</module>
         <module>hello-string</module>
         <module>hello-enum</module>
+        <module>hello-cache</module>
+        <module>hello-log</module>
     </modules>
 
     <properties>
