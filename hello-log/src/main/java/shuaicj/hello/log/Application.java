@@ -1,7 +1,8 @@
 package shuaicj.hello.log;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
 /**
  * Application entry.
@@ -11,20 +12,21 @@ import org.apache.logging.log4j.Logger;
 public class Application {
 
     public static void main(String[] args) {
-        Logger logger = LogManager.getRootLogger();
+        Logger logger = LoggerFactory.getLogger("logger.error.xxx");
         logger.info("shuaicj.log.default");
 
-        System.setProperty("shuaicj.log.rolling", "rollingByDate");
-        System.setProperty("shuaicj.log.path", "bydate.log");
-        logger.info("shuaicj.log.bydate");
+        MDC.put("shuaicj.log.rolling", "byDate");
+        MDC.put("shuaicj.log.path", "bydate.log");
+        logger.debug("shuaicj.log.bydate");
 
-        System.setProperty("shuaicj.log.rolling", "rollingBySize");
-        System.setProperty("shuaicj.log.path", "bysize.log");
-        System.setProperty("shuaicj.log.size", "1");
-        System.setProperty("shuaicj.log.max", "3");
-        for (int i = 0; i < 5000000; i++) {
-            logger.info("shuaicj.log.bysize");
-        }
+        MDC.put("shuaicj.log.rolling", "bySize");
+        MDC.put("shuaicj.log.path", "bysize.log");
+        MDC.put("shuaicj.log.size", "1");
+        MDC.put("shuaicj.log.max", "3");
+        logger.warn("shuaicj.log.bysize");
+        // for (int i = 0; i < 1000000; i++) {
+        //     logger.info("shuaicj.log.bysize {}", i);
+        // }
     }
 }
 
