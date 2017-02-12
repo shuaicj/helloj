@@ -2,6 +2,7 @@ package shuaicj.hello.string;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -15,6 +16,8 @@ import static org.junit.Assert.assertTrue;
  *   5. Strings by 'StringBuilder.toString()' are not in the pool.
  *   6. Strings by 'literal append' are always in the pool because of compiler optimization.
  *   7. Strings by 'variable append' are not in the pool because it's done via StringBuilder.
+ *
+ *   8. String.valueOf(char[]) and String.valueOf(Object) act weird while passing in the same char[].
  *
  * @author shuaicj 2017/02/05
  */
@@ -90,5 +93,15 @@ public class StringTest {
         assertTrue(s2 != s4);
         assertTrue(s1.equals(s5));
         assertTrue(s1 != s5);
+    }
+
+    @SuppressWarnings("UnnecessaryLocalVariable")
+    @Test
+    public void valueOfConfusion() throws Exception {
+        char[] arr = new char[]{'a', 'b', 'c'};
+        String s1 = String.valueOf(arr);
+        Object obj = arr;
+        String s2 = String.valueOf(obj);
+        assertFalse(s1.equals(s2));
     }
 }
