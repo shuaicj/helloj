@@ -37,6 +37,7 @@
         <module>hello-enum</module>
         <module>hello-cache</module>
         <module>hello-log</module>
+        <module>hello-assert</module>
     </modules>
 
     <properties>
