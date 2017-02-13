@@ -1,5 +1,8 @@
 package shuaicj.hello.persist.jpa;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -22,12 +25,16 @@ public class User {
     @Column(nullable = false, length = 60)
     private String password;
 
+    @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_time", nullable = false, updatable = false)
+    @Column(name = "created_time", updatable = false)
+    // @Column(name = "created_time", nullable = false, updatable = false)
     private Date createdTime;
 
+    @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_time", nullable = false)
+    @Column(name = "updated_time")
+    // @Column(name = "updated_time", nullable = false)
     private Date updatedTime;
 
     public User() {
@@ -38,15 +45,15 @@ public class User {
         this.password = password;
     }
 
-    @PrePersist
-    protected void prePersist() {
-        createdTime = updatedTime = new Date();
-    }
-
-    @PreUpdate
-    protected void preUpdate() {
-        updatedTime = new Date();
-    }
+    // @PrePersist
+    // protected void prePersist() {
+    //     createdTime = updatedTime = new Date();
+    // }
+    //
+    // @PreUpdate
+    // protected void preUpdate() {
+    //     updatedTime = new Date();
+    // }
 
     public Long getId() {
         return id;
