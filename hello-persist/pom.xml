@@ -17,6 +17,7 @@
         <module>hello-persist-db-init</module>
         <module>hello-persist-jdbc-template</module>
         <module>hello-persist-transaction</module>
+        <module>hello-persist-cache</module>
     </modules>
 
 
