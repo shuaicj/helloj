@@ -38,6 +38,7 @@
         <module>hello-log</module>
         <module>hello-assert</module>
         <module>hello-autoboxing</module>
+        <module>hello-thread-stop</module>
     </modules>
 
     <properties>
