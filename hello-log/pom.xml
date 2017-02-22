@@ -15,5 +15,6 @@
     <modules>
         <module>hello-log-logback</module>
         <module>hello-log-log4j2</module>
+        <module>hello-log-log4j2-route</module>
     </modules>
 </project>
