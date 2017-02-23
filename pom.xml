@@ -39,6 +39,7 @@
         <module>hello-assert</module>
         <module>hello-autoboxing</module>
         <module>hello-thread-stop</module>
+        <module>hello-arrays-aslist</module>
     </modules>
 
     <properties>
