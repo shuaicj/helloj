@@ -18,6 +18,7 @@
         <module>hello-persist-jdbc-template</module>
         <module>hello-persist-transaction</module>
         <module>hello-persist-cache</module>
+        <module>hello-persist-mongo</module>
     </modules>
 
 
