@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.annotation.IfProfileValue;
 import org.springframework.test.context.junit4.SpringRunner;
 import shuaicj.hello.persist.jdbc.template.User;
 
@@ -23,6 +24,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@IfProfileValue(name = "spring.profiles.active", values = {"h2", "mysql"})
 public class UserServiceImplTest {
 
     private static final String NAME1 = "shuaicj1";
