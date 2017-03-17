@@ -41,6 +41,7 @@
         <module>hello-thread-stop</module>
         <module>hello-arrays-aslist</module>
         <module>hello-command-line-runner</module>
+        <module>hello-output-capture</module>
     </modules>
 
     <properties>
