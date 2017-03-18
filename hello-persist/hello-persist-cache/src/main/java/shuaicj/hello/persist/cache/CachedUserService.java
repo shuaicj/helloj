@@ -1,6 +1,6 @@
 package shuaicj.hello.persist.cache;
 
-import shuaicj.hello.persist.jdbc.template.User;
+import shuaicj.hello.persist.jpa.User;
 
 /**
  * The interface for cached user.

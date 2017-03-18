@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>shuaicj.hello</groupId>
-            <artifactId>hello-persist-jdbc-template</artifactId>
+            <artifactId>hello-persist-jpa</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

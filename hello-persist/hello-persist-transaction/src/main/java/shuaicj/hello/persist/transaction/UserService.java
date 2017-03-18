@@ -1,7 +1,7 @@
 package shuaicj.hello.persist.transaction;
 
 import org.springframework.transaction.annotation.Transactional;
-import shuaicj.hello.persist.jdbc.template.User;
+import shuaicj.hello.persist.jpa.User;
 
 import java.util.List;
 

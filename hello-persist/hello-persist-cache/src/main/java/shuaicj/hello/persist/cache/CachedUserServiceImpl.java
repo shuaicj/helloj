@@ -6,8 +6,10 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import shuaicj.hello.persist.jdbc.template.User;
-import shuaicj.hello.persist.jdbc.template.UserDao;
+import shuaicj.hello.persist.jpa.User;
+import shuaicj.hello.persist.jpa.UserRepository;
+
+import javax.transaction.Transactional;
 
 /**
  * The implementation for CachedUserService.
@@ -19,12 +21,12 @@ import shuaicj.hello.persist.jdbc.template.UserDao;
 public class CachedUserServiceImpl implements CachedUserService {
 
     @Autowired
-    private UserDao userDao;
+    private UserRepository repo;
 
     @Override
     @Cacheable
     public User find(String username) {
-        return userDao.findByUsername(username);
+        return repo.findByUsername(username);
     }
 
     @Override
@@ -33,9 +35,11 @@ public class CachedUserServiceImpl implements CachedUserService {
     }
 
     @Override
+    @Transactional
     @CachePut(key = "#username")
     public User update(String username, String password) {
-        userDao.updatePasswordByUsername(username, password);
-        return new User(username, password);
+        User u = repo.findByUsername(username);
+        u.setPassword(password);
+        return repo.save(u);
     }
 }

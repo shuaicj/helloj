@@ -45,14 +45,6 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void delete() throws Exception {
-        repo.save(new User(NAME, PASS));
-        assertThat(repo.findByUsername(NAME)).isNotNull();
-        repo.deleteByUsername(NAME);
-        assertThat(repo.findByUsername(NAME)).isNull();
-    }
-
-    @Test
     public void save() throws Exception {
         repo.save(new User(NAME, PASS));
         User u = repo.findByUsername(NAME);
@@ -63,6 +55,12 @@ public class UserRepositoryTest {
         assertThat(u.getCreatedTime()).isEqualTo(u.getUpdatedTime());
     }
 
+    @Test(expected = DataIntegrityViolationException.class)
+    public void saveDuplicate() throws Exception {
+        repo.save(new User(NAME, PASS));
+        repo.save(new User(NAME, PASS));
+    }
+
     @Test
     public void saveReturnsId() throws Exception {
         User u1 = repo.save(new User(NAME, PASS));
@@ -70,10 +68,31 @@ public class UserRepositoryTest {
         assertThat(u2.getId()).isEqualTo(u1.getId() + 1);
     }
 
-    @Test(expected = DataIntegrityViolationException.class)
-    public void duplicate() throws Exception {
+    @Test
+    public void findByUsername() throws Exception {
         repo.save(new User(NAME, PASS));
+        User user = repo.findByUsername(NAME);
+        assertThat(user.getPassword()).isEqualTo(PASS);
+    }
+
+    @Test
+    public void findByUsernameNotExists() throws Exception {
+        assertThat(repo.findByUsername(NAME)).isNull();
+    }
+
+    @Test
+    public void deleteByUsername() throws Exception {
         repo.save(new User(NAME, PASS));
+        assertThat(repo.findByUsername(NAME)).isNotNull();
+        repo.deleteByUsername(NAME);
+        assertThat(repo.findByUsername(NAME)).isNull();
+    }
+
+    @Test
+    public void deleteByUsernameNotExists() throws Exception {
+        assertThat(repo.findByUsername(NAME)).isNull();
+        repo.deleteByUsername(NAME);
+        assertThat(repo.findByUsername(NAME)).isNull();
     }
 
     @Test

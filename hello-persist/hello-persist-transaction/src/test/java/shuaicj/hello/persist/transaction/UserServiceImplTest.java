@@ -1,15 +1,16 @@
 package shuaicj.hello.persist.transaction;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DuplicateKeyException;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.annotation.IfProfileValue;
 import org.springframework.test.context.junit4.SpringRunner;
-import shuaicj.hello.persist.jdbc.template.User;
+import shuaicj.hello.persist.jpa.User;
+import shuaicj.hello.persist.jpa.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,12 +37,18 @@ public class UserServiceImplTest {
     private UserService userService;
 
     @Autowired
-    private JdbcTemplate jdbc;
+    private UserRepository repo;
 
     @Before
     public void setUp() throws Exception {
-        jdbcDelete(NAME1);
-        jdbcDelete(NAME2);
+        repo.deleteByUsername(NAME1);
+        repo.deleteByUsername(NAME2);
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        repo.deleteByUsername(NAME1);
+        repo.deleteByUsername(NAME2);
     }
 
     @Test
@@ -57,20 +64,7 @@ public class UserServiceImplTest {
         List<User> users = new ArrayList<>();
         users.add(new User(NAME1, PASS1));
         users.add(new User(NAME1, PASS1));
-        assertThatExceptionOfType(DuplicateKeyException.class).isThrownBy(() -> userService.register(users));
-        assertThat(jdbcCount(NAME1, PASS1)).isEqualTo(0);
-    }
-
-    private void jdbcDelete(String username) throws Exception {
-        jdbc.update("delete from user where username = ?", username);
-    }
-
-    private void jdbcInsert(String username, String password) throws Exception {
-        jdbc.update("insert into user(username, password) values(?, ?)", username, password);
-    }
-
-    private int jdbcCount(String username, String password) throws Exception {
-        String sql = "select count(*) from user where username = ? and password = ?";
-        return jdbc.queryForObject(sql, Integer.class, username, password);
+        assertThatExceptionOfType(DataIntegrityViolationException.class).isThrownBy(() -> userService.register(users));
+        assertThat(repo.findByUsername(NAME1)).isNull();
     }
 }
