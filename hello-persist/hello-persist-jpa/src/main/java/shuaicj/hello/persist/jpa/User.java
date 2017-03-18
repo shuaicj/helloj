@@ -2,6 +2,7 @@ package shuaicj.hello.persist.jpa;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -12,6 +13,7 @@ import java.util.Date;
  * @author shuaicj 2017/01/15
  */
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "user")
 public class User {
 
@@ -28,13 +30,11 @@ public class User {
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_time", updatable = false)
-    // @Column(name = "created_time", nullable = false, updatable = false)
     private Date createdTime;
 
     @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_time")
-    // @Column(name = "updated_time", nullable = false)
     private Date updatedTime;
 
     public User() {

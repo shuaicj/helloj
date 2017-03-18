@@ -50,7 +50,7 @@ public class DbInitTest {
         Date updatedTime1 = (Date) times1.get("updated_time");
         assertThat(createdTime1).isEqualTo(updatedTime1);
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
 
         String sqlUpdate = "update user set password = ? where username = ?";
         jdbcTemplate.update(sqlUpdate, "abcd", NAME);
