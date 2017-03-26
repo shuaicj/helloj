@@ -7,6 +7,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.IfProfileValue;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -110,5 +112,41 @@ public class UserRepositoryTest {
         u = repo.save(u);
         assertThat(u.getCreatedTime()).isEqualTo(createdTime);
         assertThat(u.getUpdatedTime()).isAfter(createdTime);
+    }
+
+    @Test
+    public void pagination() throws Exception {
+        int total = 5, size = 2;
+        for (int i = 0; i < total; i++) {
+            repo.save(new User(NAME + i, PASS));
+        }
+
+        Page<User> users = repo.findAll(new PageRequest(0, size));
+        assertThat(users.getTotalElements()).isEqualTo(total);
+        assertThat(users.getTotalPages()).isEqualTo(total / size + 1);
+        assertThat(users.getNumberOfElements()).isEqualTo(size);
+        assertThat(users.getNumber()).isEqualTo(0);
+        assertThat(users.getContent().get(0).getUsername()).isEqualTo(NAME + "0");
+        assertThat(users.getContent().get(1).getUsername()).isEqualTo(NAME + "1");
+
+        users = repo.findAll(users.nextPageable());
+        assertThat(users.getTotalElements()).isEqualTo(total);
+        assertThat(users.getTotalPages()).isEqualTo(total / size + 1);
+        assertThat(users.getNumberOfElements()).isEqualTo(size);
+        assertThat(users.getNumber()).isEqualTo(1);
+        assertThat(users.getContent().get(0).getUsername()).isEqualTo(NAME + "2");
+        assertThat(users.getContent().get(1).getUsername()).isEqualTo(NAME + "3");
+
+        users = repo.findAll(users.nextPageable());
+        assertThat(users.getTotalElements()).isEqualTo(total);
+        assertThat(users.getTotalPages()).isEqualTo(total / size + 1);
+        assertThat(users.getNumberOfElements()).isEqualTo(1);
+        assertThat(users.getNumber()).isEqualTo(2);
+        assertThat(users.hasNext()).isFalse();
+        assertThat(users.getContent().get(0).getUsername()).isEqualTo(NAME + "4");
+
+        for (int i = 0; i < total; i++) {
+            repo.deleteByUsername(NAME + i);
+        }
     }
 }
