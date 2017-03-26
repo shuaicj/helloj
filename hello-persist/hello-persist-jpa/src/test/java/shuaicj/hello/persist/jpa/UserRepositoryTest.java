@@ -86,14 +86,14 @@ public class UserRepositoryTest {
     public void deleteByUsername() throws Exception {
         repo.save(new User(NAME, PASS));
         assertThat(repo.findByUsername(NAME)).isNotNull();
-        repo.deleteByUsername(NAME);
+        assertThat(repo.deleteByUsername(NAME)).isEqualTo(1);
         assertThat(repo.findByUsername(NAME)).isNull();
     }
 
     @Test
     public void deleteByUsernameNotExists() throws Exception {
         assertThat(repo.findByUsername(NAME)).isNull();
-        repo.deleteByUsername(NAME);
+        assertThat(repo.deleteByUsername(NAME)).isEqualTo(0);
         assertThat(repo.findByUsername(NAME)).isNull();
     }
 
