@@ -18,5 +18,6 @@
         <module>hello-log-log4j2-route</module>
         <module>hello-log-jul</module>
         <module>hello-log-jcl</module>
+        <module>hello-log-slf4j</module>
     </modules>
 </project>
