@@ -13,6 +13,7 @@ import org.springframework.test.annotation.IfProfileValue;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -148,5 +149,29 @@ public class UserRepositoryTest {
         for (int i = 0; i < total; i++) {
             repo.deleteByUsername(NAME + i);
         }
+    }
+
+    @Test
+    public void ignoreCase() throws Exception {
+        repo.save(new User(NAME, PASS));
+        repo.save(new User(NAME.toUpperCase(), PASS));
+        assertThat(repo.findByUsernameIgnoreCase(NAME)).hasSize(2);
+        repo.deleteByUsername(NAME);
+        repo.deleteByUsername(NAME.toUpperCase());
+    }
+
+    @Test
+    public void orderBy() throws Exception {
+        // int total = 3;
+        // for (int i = 0; i < total; i++) {
+        //     repo.save(new User(NAME + i, PASS));
+        // }
+        //
+        // List<User> users = repo.findAllOrderByUsernameDesc(new PageRequest(0, total));
+        // assertThat(users).hasSize(total);
+        // for (int i = 0; i < total; i++) {
+        //     assertThat(users.get(i).getUsername()).isEqualTo(NAME + i);
+        //     repo.deleteByUsername(NAME + i);
+        // }
     }
 }

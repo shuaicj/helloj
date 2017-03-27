@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * JPA interface for user.
@@ -22,4 +23,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     // List<User> deleteByUsername(String username);
 
     Page<User> findAll(Pageable pageable);
+
+    List<User> findByUsernameIgnoreCase(String username);
+
+    // List<User> findByUsernameIgnoreCaseOrderByUsernameDesc(String username);
 }
