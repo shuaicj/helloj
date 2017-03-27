@@ -162,16 +162,19 @@ public class UserRepositoryTest {
 
     @Test
     public void orderBy() throws Exception {
-        // int total = 3;
-        // for (int i = 0; i < total; i++) {
-        //     repo.save(new User(NAME + i, PASS));
-        // }
-        //
-        // List<User> users = repo.findAllOrderByUsernameDesc(new PageRequest(0, total));
-        // assertThat(users).hasSize(total);
-        // for (int i = 0; i < total; i++) {
-        //     assertThat(users.get(i).getUsername()).isEqualTo(NAME + i);
-        //     repo.deleteByUsername(NAME + i);
-        // }
+        int total = 3;
+        for (int i = 0; i < total; i++) {
+            repo.save(new User(NAME + i, PASS));
+        }
+
+        List<User> users = repo.findByPasswordOrderByUsernameDesc(PASS);
+        assertThat(users).hasSize(total);
+        for (int i = 0; i < total; i++) {
+            assertThat(users.get(i).getUsername()).isEqualTo(NAME + (total - i - 1));
+        }
+
+        for (int i = 0; i < total; i++) {
+            repo.deleteByUsername(NAME + i);
+        }
     }
 }
