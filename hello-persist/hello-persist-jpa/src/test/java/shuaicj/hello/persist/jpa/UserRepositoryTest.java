@@ -177,4 +177,16 @@ public class UserRepositoryTest {
             repo.deleteByUsername(NAME + i);
         }
     }
+
+    @Test
+    public void count() throws Exception {
+        int total = 3;
+        for (int i = 0; i < total; i++) {
+            repo.save(new User(NAME + i, PASS));
+        }
+        assertThat(repo.countByPassword(PASS)).isEqualTo(total);
+        for (int i = 0; i < total; i++) {
+            repo.deleteByUsername(NAME + i);
+        }
+    }
 }
