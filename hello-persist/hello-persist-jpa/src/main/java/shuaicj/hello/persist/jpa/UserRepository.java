@@ -29,4 +29,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByPasswordOrderByUsernameDesc(String password);
 
     int countByPassword(String password);
+
+    boolean existsByUsername(String username);
 }

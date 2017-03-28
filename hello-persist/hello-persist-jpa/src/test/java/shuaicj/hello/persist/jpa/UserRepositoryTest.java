@@ -189,4 +189,11 @@ public class UserRepositoryTest {
             repo.deleteByUsername(NAME + i);
         }
     }
+
+    @Test
+    public void exists() throws Exception {
+        assertThat(repo.existsByUsername(NAME)).isFalse();
+        repo.save(new User(NAME, PASS));
+        assertThat(repo.existsByUsername(NAME)).isTrue();
+    }
 }
