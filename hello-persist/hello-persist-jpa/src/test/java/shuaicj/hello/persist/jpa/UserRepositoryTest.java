@@ -154,10 +154,8 @@ public class UserRepositoryTest {
     @Test
     public void ignoreCase() throws Exception {
         repo.save(new User(NAME, PASS));
-        repo.save(new User(NAME.toUpperCase(), PASS));
-        assertThat(repo.findByUsernameIgnoreCase(NAME)).hasSize(2);
-        repo.deleteByUsername(NAME);
-        repo.deleteByUsername(NAME.toUpperCase());
+        repo.save(new User(NAME2, PASS.toUpperCase()));
+        assertThat(repo.findByPasswordIgnoreCase(PASS)).hasSize(2);
     }
 
     @Test
