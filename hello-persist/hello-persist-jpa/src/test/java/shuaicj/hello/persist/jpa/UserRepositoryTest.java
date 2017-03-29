@@ -212,4 +212,12 @@ public class UserRepositoryTest {
         assertThat(user.getUsername()).isEqualTo(NAME);
         assertThat(user.getPassword()).isEqualTo(PASS);
     }
+
+    @Test
+    public void updateViaModifying() throws Exception {
+        repo.save(new User(NAME, PASS));
+        assertThat(repo.updatePassword(NAME, PASS2, PASS)).isEqualTo(0);
+        assertThat(repo.updatePassword(NAME, PASS, PASS2)).isEqualTo(1);
+        assertThat(repo.findByUsername(NAME).getPassword()).isEqualTo(PASS2);
+    }
 }
