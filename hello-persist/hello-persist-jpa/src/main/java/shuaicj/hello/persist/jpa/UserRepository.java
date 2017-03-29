@@ -3,6 +3,7 @@ package shuaicj.hello.persist.jpa;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -31,4 +32,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     int countByPassword(String password);
 
     boolean existsByUsername(String username);
+
+    @Query("select u from User u where username = ?1")
+    User findByUsernameViaJPQL(String username);
+
+    @Query(value = "select * from user where username = ?1", nativeQuery = true)
+    User findByUsernameViaSQL(String username);
 }

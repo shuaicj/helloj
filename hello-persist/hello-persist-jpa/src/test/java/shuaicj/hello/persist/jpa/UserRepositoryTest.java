@@ -194,4 +194,22 @@ public class UserRepositoryTest {
         repo.save(new User(NAME, PASS));
         assertThat(repo.existsByUsername(NAME)).isTrue();
     }
+
+    @Test
+    public void findViaJPQL() throws Exception {
+        assertThat(repo.findByUsernameViaJPQL(NAME)).isNull();
+        repo.save(new User(NAME, PASS));
+        User user = repo.findByUsernameViaJPQL(NAME);
+        assertThat(user.getUsername()).isEqualTo(NAME);
+        assertThat(user.getPassword()).isEqualTo(PASS);
+    }
+
+    @Test
+    public void findViaSQL() throws Exception {
+        assertThat(repo.findByUsernameViaSQL(NAME)).isNull();
+        repo.save(new User(NAME, PASS));
+        User user = repo.findByUsernameViaSQL(NAME);
+        assertThat(user.getUsername()).isEqualTo(NAME);
+        assertThat(user.getPassword()).isEqualTo(PASS);
+    }
 }
