@@ -41,14 +41,12 @@ public class UserServiceImplTest {
 
     @Before
     public void setUp() throws Exception {
-        repo.deleteByUsername(NAME1);
-        repo.deleteByUsername(NAME2);
+        repo.deleteAll();
     }
 
     @After
     public void tearDown() throws Exception {
-        repo.deleteByUsername(NAME1);
-        repo.deleteByUsername(NAME2);
+        setUp();
     }
 
     @Test

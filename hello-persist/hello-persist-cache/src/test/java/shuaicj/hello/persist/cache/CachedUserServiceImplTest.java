@@ -36,16 +36,14 @@ public class CachedUserServiceImplTest {
 
     @Before
     public void setUp() throws Exception {
-        repo.deleteByUsername(NAME);
-        repo.deleteByUsername(NAME2);
+        repo.deleteAll();
         userService.clearCache(NAME);
         userService.clearCache(NAME2);
     }
 
     @After
     public void tearDown() throws Exception {
-        repo.deleteByUsername(NAME);
-        repo.deleteByUsername(NAME2);
+        setUp();
     }
 
     @Test

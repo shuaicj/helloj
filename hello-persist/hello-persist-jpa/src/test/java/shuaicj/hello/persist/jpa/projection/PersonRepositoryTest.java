@@ -29,14 +29,12 @@ public class PersonRepositoryTest {
 
     @Before
     public void setUp() throws Exception {
-        repo.deleteByFirstName(FIRST_NAME);
-        repo.deleteByLastName(LAST_NAME);
+        repo.deleteAll();
     }
 
     @After
     public void tearDown() throws Exception {
-        repo.deleteByFirstName(FIRST_NAME);
-        repo.deleteByLastName(LAST_NAME);
+        setUp();
     }
 
     @Test
