@@ -1,4 +1,4 @@
-package shuaicj.hello.persist.jpa.projection;
+package shuaicj.hello.persist.jpa.relationship.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,23 +9,30 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
- * A person entity.
+ * A jpa entity representing a phone.
  *
- * @author shuaicj 2017/03/29
+ * @author shuaicj 2017/03/30
  */
 @Entity
 @Setter
 @Getter
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class Person {
+public class Phone {
 
     @Id
     @GeneratedValue
     private Long id;
 
     @NonNull
-    private String firstName, lastName;
+    private String number;
+
+    @NonNull
+    @ManyToOne
+    @JoinColumn
+    private Employee owner;
 }
