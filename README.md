@@ -1,9 +1,10 @@
 # Hello Java!
 
 #### Supported Maven Profiles
-* h2 (active by default)
-* mysql
-* mongodb
+- h2 (active by default)
+- mysql
+- mongodb
+- mongoembed
 
 #### Basic Info For Modules
 - **hello-arrays-aslist** - usage of java `Arrays.asList()`
