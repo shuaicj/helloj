@@ -1,10 +1,6 @@
 package shuaicj.hello.persist.mongo;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -13,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A java bean representing a user.
@@ -36,11 +33,35 @@ public class User {
     @NonNull
     private String password;
 
-    private List<String> phones;
+    private Address address; // an object
+
+    private List<String> phones; // a list
+
+    private List<Address> addresses; // a list contains objects
+
+    private Map<String, Integer> scores; // a map
+
+    private Map<String, Address> groupAddresses; // a map with object value
+
+    private List<List<Integer>> listListScores; // a list contains list
+
+    private List<Map<String, Integer>> listMapScores; // a list contains map
+
+    private Map<String, List<Integer>> mapListScores; // a map with list value
+
+    private Map<String, Map<String, Integer>> mapMapScores; // a map with map value
 
     @CreatedDate
     private Date createdTime;
 
     @LastModifiedDate
     private Date updatedTime;
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static final class Address {
+        private String country, city, street;
+    }
 }
