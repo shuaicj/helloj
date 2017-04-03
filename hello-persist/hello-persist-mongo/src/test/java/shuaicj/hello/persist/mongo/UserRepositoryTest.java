@@ -254,4 +254,29 @@ public class UserRepositoryTest {
         assertThat(u.getMapMapScores().get("222")).containsOnly(entry("c", 10));
         assertThat(u.getMapMapScores().get("333")).containsOnly(entry("d", 30), entry("e", 20), entry("f", 10));
     }
+
+    @Test
+    public void customQuery() throws Exception {
+        User u1 = new User(NAME + "1", PASS);
+        u1.setAddresses(Arrays.asList(new User.Address("a1", "b1", "c1")));
+        repo.save(u1);
+        User u2 = new User(NAME + "2", PASS);
+        u2.setAddresses(Arrays.asList(new User.Address("d1", "e1", "f1"), new User.Address("g2", "h2", "i2")));
+        repo.save(u2);
+        User u3 = new User(NAME + "3", PASS);
+        u3.setAddresses(Arrays.asList(new User.Address("j1", "k1", "l1"), new User.Address("m2", "n2", "o2")));
+        repo.save(u3);
+
+        List<User> users1 = repo.findUserWithManyAddresses(1);
+        assertThat(users1).hasSize(1);
+        assertThat(users1.get(0).getUsername()).isEqualTo(NAME + "1");
+        assertThat(users1.get(0).getAddresses()).hasSize(1);
+
+        List<User> users2 = repo.findUserWithManyAddresses(2);
+        assertThat(users2).hasSize(2);
+        for (User u : users2) {
+            assertThat(u.getUsername()).isIn(NAME + "2", NAME + "3");
+            assertThat(u.getAddresses()).hasSize(2);
+        }
+    }
 }
