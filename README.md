@@ -15,6 +15,7 @@
 - **hello-cpu-num** - how to get cpu number
 - **hello-deadlock** - emulate deadlock
 - **hello-digest-utils** - usage of spring `DigestUtils`
+- **hello-docker** - how to package docker image
 - **hello-enum** - usage of java `enum` type
 - **hello-float** - detail of java float `0.0f`, `-0.0f`, `Float.NaN`, `Float.INFINITY`
 - **hello-log** - about logging
