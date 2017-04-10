@@ -51,3 +51,4 @@
 - **hello-string** - detail of java string and string pool
 - **hello-thread-stop** - comparion of stopping thread
 - **hello-threadpool** - usage of java thread pool `ExecutorService`
+- **hello-tomcat-dir** - tomcat embedded default work dir

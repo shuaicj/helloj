@@ -43,6 +43,8 @@
         <module>hello-command-line-runner</module>
         <module>hello-output-capture</module>
         <module>hello-lombok</module>
+        <module>hello-docker</module>
+        <module>hello-tomcat-dir</module>
     </modules>
 
     <properties>
