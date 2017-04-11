@@ -19,6 +19,7 @@
         <module>hello-persist-transaction</module>
         <module>hello-persist-cache</module>
         <module>hello-persist-mongo</module>
+        <module>hello-persist-kv</module>
     </modules>
 
 

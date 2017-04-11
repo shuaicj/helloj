@@ -41,6 +41,7 @@
     - **hello-persist-db-init** - use sql scripts to init db
     - **hello-persist-jdbc-template**- usage of spring `JdbcTemplate`
     - **hello-persist-jpa** - usage of `spring data JPA`
+    - **hello-persist-kv** - usage of `spring data keyvalue`
     - **hello-persist-mongo** - usage of `spring data MongoDB`
     - **hello-persist-transaction** - usage of spring `@Transactional`
 - **hello-reference** - java `StrongReference`, `SoftReference`, `WeakReference`, `PhantomReference`
