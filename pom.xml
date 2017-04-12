@@ -45,6 +45,7 @@
         <module>hello-lombok</module>
         <module>hello-docker</module>
         <module>hello-tomcat-dir</module>
+        <module>hello-exception</module>
     </modules>
 
     <properties>
