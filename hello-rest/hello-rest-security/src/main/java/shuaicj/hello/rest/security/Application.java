@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  * @author shuaicj 2016/12/28
  */
-@SpringBootApplication(scanBasePackages = {"shuaicj.hello.rest.security", "shuaicj.hello.rest.basic"})
+@SpringBootApplication(scanBasePackages = {"shuaicj.hello.rest.security", "shuaicj.hello.rest.common"})
 public class Application {
 
     public static void main(String[] args) {

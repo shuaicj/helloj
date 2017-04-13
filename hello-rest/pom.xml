@@ -13,19 +13,11 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>hello-rest-basic</module>
+        <module>hello-rest-common</module>
+        <module>hello-rest-jar</module>
         <module>hello-rest-war</module>
         <module>hello-rest-security</module>
         <module>hello-rest-predestroy</module>
     </modules>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

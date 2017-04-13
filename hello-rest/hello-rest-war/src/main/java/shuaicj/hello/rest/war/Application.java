@@ -10,7 +10,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
  *
  * @author shuaicj 2016/12/28
  */
-@SpringBootApplication(scanBasePackages = {"shuaicj.hello.rest.war", "shuaicj.hello.rest.basic"})
+@SpringBootApplication(scanBasePackages = {"shuaicj.hello.rest.war", "shuaicj.hello.rest.common"})
 public class Application extends SpringBootServletInitializer {
 
     // for spring boot packaging: war

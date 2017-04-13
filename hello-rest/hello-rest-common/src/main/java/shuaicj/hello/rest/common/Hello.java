@@ -1,4 +1,4 @@
-package shuaicj.hello.rest.basic;
+package shuaicj.hello.rest.common;
 
 /**
  * A java bean representing a greeting.

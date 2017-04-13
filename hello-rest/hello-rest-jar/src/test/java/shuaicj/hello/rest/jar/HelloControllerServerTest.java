@@ -1,4 +1,4 @@
-package shuaicj.hello.rest.basic;
+package shuaicj.hello.rest.jar;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -48,7 +48,8 @@
 - **hello-reference** - java `StrongReference`, `SoftReference`, `WeakReference`, `PhantomReference`
 - **hello-resource-path** - get file path in classpath
 - **hello-rest** - spring boot rest related
-    - **hello-rest-basic** - simple spring boot app
+    - **hello-rest-common** - common in hello-rest
+    - **hello-rest-jar** - simple spring boot app
     - **hello-rest-predestroy** - usage of spring `@PreDestroy`
     - **hello-rest-security** - spring security for http
     - **hello-rest-war** - spring boot app packaging as war

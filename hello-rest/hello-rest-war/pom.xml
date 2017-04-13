@@ -15,8 +15,12 @@
     <dependencies>
         <dependency>
             <groupId>shuaicj.hello</groupId>
-            <artifactId>hello-rest-basic</artifactId>
+            <artifactId>hello-rest-common</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
         <!-- for spring boot packaging: war-->
@@ -26,4 +30,13 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

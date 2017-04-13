@@ -1,4 +1,4 @@
-package shuaicj.hello.rest.basic;
+package shuaicj.hello.rest.common;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
