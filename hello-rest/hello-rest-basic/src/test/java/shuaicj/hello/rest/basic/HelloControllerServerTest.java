@@ -1,4 +1,4 @@
-package shuaicj.hello.rest;
+package shuaicj.hello.rest.basic;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +11,9 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * Test HelloController via MockMvc.

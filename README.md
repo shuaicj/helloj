@@ -47,7 +47,11 @@
     - **hello-persist-transaction** - usage of spring `@Transactional`
 - **hello-reference** - java `StrongReference`, `SoftReference`, `WeakReference`, `PhantomReference`
 - **hello-resource-path** - get file path in classpath
-- **hello-rest** - spring `@RestController`, `@RequestMapping`, add destroy handler `@PreDestory` and security config
+- **hello-rest** - spring boot rest related
+    - **hello-rest-basic** - simple spring boot app
+    - **hello-rest-predestroy** - usage of spring `@PreDestroy`
+    - **hello-rest-security** - spring security for http
+    - **hello-rest-war** - spring boot app packaging as war
 - **hello-schedule** - spring `@EnableScheduling` and `@Scheduled`
 - **hello-sqlite** - usage of `sqlite`
 - **hello-sshj** - usage of `SSHJ`

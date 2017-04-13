@@ -1,4 +1,4 @@
-package shuaicj.hello.rest;
+package shuaicj.hello.rest.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -21,12 +21,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests()
-//                .antMatchers("/hello").permitAll()
-//                .anyRequest().hasRole("USER")
-//                .and()
-//            .httpBasic();
-//        http.authorizeRequests().anyRequest().permitAll().and().csrf().disable();
+       http.authorizeRequests()
+               // .antMatchers("/hello").permitAll()
+               .anyRequest().hasRole("USER")
+               .and()
+           .httpBasic();
+       // http.authorizeRequests().anyRequest().permitAll().and().csrf().disable();
     }
 }
 

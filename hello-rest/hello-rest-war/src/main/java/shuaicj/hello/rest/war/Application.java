@@ -1,4 +1,4 @@
-package shuaicj.hello.rest;
+package shuaicj.hello.rest.war;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,8 +10,8 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
  *
  * @author shuaicj 2016/12/28
  */
-@SpringBootApplication
-public class Application  extends SpringBootServletInitializer {
+@SpringBootApplication(scanBasePackages = {"shuaicj.hello.rest.war", "shuaicj.hello.rest.basic"})
+public class Application extends SpringBootServletInitializer {
 
     // for spring boot packaging: war
     @Override
