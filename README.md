@@ -40,6 +40,7 @@
 - **hello-persist** - about persistence
     - **hello-persist-cache** - usage of spring `@CacheConfig`, `@Cacheable`, `@CacheEvict`, `@CachePut`
     - **hello-persist-db-init** - use sql scripts to init db
+    - **hello-persist-hive** - apache hive jdbc usage
     - **hello-persist-jdbc-template**- usage of spring `JdbcTemplate`
     - **hello-persist-jpa** - usage of `spring data JPA`
     - **hello-persist-kv** - usage of `spring data keyvalue`

@@ -20,6 +20,7 @@
         <module>hello-persist-cache</module>
         <module>hello-persist-mongo</module>
         <module>hello-persist-kv</module>
+        <module>hello-persist-hive</module>
     </modules>
 
 
