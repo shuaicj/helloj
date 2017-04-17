@@ -5,6 +5,8 @@
 - mysql
 - mongodb
 - mongoembed
+- redis
+- hive
 
 #### Basic Info For Modules
 - **hello-arrays-aslist** - usage of java `Arrays.asList()`
@@ -45,6 +47,7 @@
     - **hello-persist-jpa** - usage of `spring data JPA`
     - **hello-persist-kv** - usage of `spring data keyvalue`
     - **hello-persist-mongo** - usage of `spring data MongoDB`
+    - **hello-persist-redis** - usage of `spring data redis`
     - **hello-persist-transaction** - usage of spring `@Transactional`
 - **hello-reference** - java `StrongReference`, `SoftReference`, `WeakReference`, `PhantomReference`
 - **hello-resource-path** - get file path in classpath

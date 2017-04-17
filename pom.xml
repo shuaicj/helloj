@@ -200,6 +200,12 @@
             </dependencies>
         </profile>
         <profile>
+            <id>redis</id>
+            <properties>
+                <spring.profiles.active>redis</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
             <id>hive</id>
             <properties>
                 <spring.profiles.active>hive</spring.profiles.active>

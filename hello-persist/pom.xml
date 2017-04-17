@@ -21,6 +21,7 @@
         <module>hello-persist-mongo</module>
         <module>hello-persist-kv</module>
         <module>hello-persist-hive</module>
+        <module>hello-persist-redis</module>
     </modules>
 
 
