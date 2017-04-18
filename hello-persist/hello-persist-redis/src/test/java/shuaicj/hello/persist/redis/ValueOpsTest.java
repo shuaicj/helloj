@@ -20,14 +20,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Test redis value operations.
  *
- * @author shuaicj "shuaicj2"17/04/17
+ * @author shuaicj 2017/04/17
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @IfProfileValue(name = "spring.profiles.active", value = "redis")
 public class ValueOpsTest {
 
-    private static final String KEY = "my:testkey";
+    private static final String KEY = "my:key:test";
 
     @Autowired
     ValueOperations<String, String> ops;

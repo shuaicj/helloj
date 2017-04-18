@@ -1,4 +1,4 @@
-package shuaicj.hello.persist.redis;
+package shuaicj.hello.persist.redis.collection;
 
 import org.junit.After;
 import org.junit.Before;
@@ -7,22 +7,25 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.support.collections.DefaultRedisMap;
+import org.springframework.data.redis.support.collections.RedisMap;
 import org.springframework.test.annotation.IfProfileValue;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.entry;
 
 /**
- * Test spring StringRedisTemplate.
+ * Test spring RedisMap
  *
- * @author shuaicj 2017/04/17
+ * @author shuaicj 2017/04/18
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @IfProfileValue(name = "spring.profiles.active", value = "redis")
-public class StringRedisTemplateTest {
+public class RedisMapTest {
 
-    private static final String KEY = "my:key:test";
+    private static final String KEY = "my:key:map";
 
     @Autowired
     StringRedisTemplate redis;
@@ -38,11 +41,12 @@ public class StringRedisTemplateTest {
     }
 
     @Test
-    public void testGetAndSet() {
-        assertThat(redis.opsForValue().get(KEY)).isNull();
-        redis.opsForValue().set(KEY, "shuaicj");
-        assertThat(redis.opsForValue().get(KEY)).isEqualTo("shuaicj");
-        assertThat(redis.opsForValue().getAndSet(KEY, "shuaicj2")).isEqualTo("shuaicj");
-        assertThat(redis.opsForValue().get(KEY)).isEqualTo("shuaicj2");
+    public void map() {
+        RedisMap<String, String> map = new DefaultRedisMap<>(KEY, redis);
+        map.put("abc", "def");
+        map.put("hij", "klm");
+        assertThat(map).containsOnly(entry("abc", "def"), entry("hij", "klm"));
+        map.remove("abc");
+        assertThat(map).containsOnly(entry("hij", "klm"));
     }
 }
