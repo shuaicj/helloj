@@ -1,7 +1,5 @@
 package shuaicj.hello.persist.cache;
 
-import shuaicj.hello.persist.jpa.User;
-
 /**
  * The interface for cached user.
  *
@@ -13,5 +11,5 @@ public interface CachedUserService {
 
     void clearCache(String username);
 
-    User update(String username, String password);
+    User update(String username, String address);
 }

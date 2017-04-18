@@ -6,12 +6,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
+import org.springframework.core.env.Environment;
 import org.springframework.test.annotation.IfProfileValue;
 import org.springframework.test.context.junit4.SpringRunner;
-import shuaicj.hello.persist.jpa.User;
-import shuaicj.hello.persist.jpa.UserRepository;
 
-import static org.junit.Assert.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Test CachedUserServiceImpl.
@@ -20,25 +21,26 @@ import static org.junit.Assert.assertTrue;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@IfProfileValue(name = "spring.profiles.active", values = {"h2", "mysql"})
+@IfProfileValue(name = "spring.profiles.active", values = {"default", "redis"})
 public class CachedUserServiceImplTest {
 
     private static final String NAME = "shuaicj";
-    private static final String PASS = "pass123";
-    private static final String NAME2 = "newuser";
-    private static final String PASS2 = "newpass";
+
+    @Autowired
+    private Environment env;
+
+    @Autowired
+    private CacheManager cacheManager;
 
     @Autowired
     private CachedUserService userService;
 
-    @Autowired
-    private UserRepository repo;
+    private Cache cache;
 
     @Before
     public void setUp() throws Exception {
-        repo.deleteAll();
-        userService.clearCache(NAME);
-        userService.clearCache(NAME2);
+        cache = cacheManager.getCache("userCache");
+        cache.clear();
     }
 
     @After
@@ -47,31 +49,44 @@ public class CachedUserServiceImplTest {
     }
 
     @Test
+    public void manager() throws Exception {
+        String name = cacheManager.getClass().getSimpleName();
+        if (env.acceptsProfiles("default")) {
+            assertThat(name).isEqualTo("ConcurrentMapCacheManager");
+        } else if (env.acceptsProfiles("redis")) {
+            assertThat(name).isEqualTo("RedisCacheManager");
+        }
+    }
+
+    @Test
     public void find() throws Exception {
-        repo.save(new User(NAME, PASS));
+        assertThat(cache.get(NAME, User.class)).isNull();
         User user1 = userService.find(NAME);
-        User user2 = userService.find(NAME);
-        assertTrue(user1 == user2);
+        User user2 = cache.get(NAME, User.class);
+        assertThat(user2.getUsername()).isEqualTo(user1.getUsername());
+        assertThat(user2.getAddress()).isEqualTo(user1.getAddress());
+        User user3 = userService.find(NAME);
+        assertThat(user3.getUsername()).isEqualTo(user1.getUsername());
+        assertThat(user3.getAddress()).isEqualTo(user1.getAddress());
     }
 
     @Test
     public void delete() throws Exception {
-        repo.save(new User(NAME, PASS));
-        User user1 = userService.find(NAME);
+        userService.find(NAME);
+        assertThat(cache.get(NAME, User.class)).isNotNull();
         userService.clearCache(NAME);
-        User user2 = userService.find(NAME);
-        assertTrue(user1 != user2);
+        assertThat(cache.get(NAME, User.class)).isNull();
     }
 
     @Test
     public void update() throws Exception {
-        repo.save(new User(NAME, PASS));
-        User user1 = userService.find(NAME);
-        User user2 = userService.update(NAME, PASS2);
+        userService.find(NAME);
+        User user1 = cache.get(NAME, User.class);
+        assertThat(user1.getAddress()).isEqualTo("china");
+        userService.update(NAME, "addr");
+        User user2 = cache.get(NAME, User.class);
+        assertThat(user2.getAddress()).isEqualTo("addr");
         User user3 = userService.find(NAME);
-        User user4 = userService.find(NAME);
-        assertTrue(user1 != user2);
-        assertTrue(user2 == user3);
-        assertTrue(user3 == user4);
+        assertThat(user3.getAddress()).isEqualTo("addr");
     }
 }

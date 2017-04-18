@@ -1,15 +1,10 @@
 package shuaicj.hello.persist.cache;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import shuaicj.hello.persist.jpa.User;
-import shuaicj.hello.persist.jpa.UserRepository;
-
-import javax.transaction.Transactional;
 
 /**
  * The implementation for CachedUserService.
@@ -20,13 +15,10 @@ import javax.transaction.Transactional;
 @CacheConfig(cacheNames = "userCache")
 public class CachedUserServiceImpl implements CachedUserService {
 
-    @Autowired
-    private UserRepository repo;
-
     @Override
     @Cacheable
     public User find(String username) {
-        return repo.findByUsername(username);
+        return new User(username, "china");
     }
 
     @Override
@@ -35,11 +27,8 @@ public class CachedUserServiceImpl implements CachedUserService {
     }
 
     @Override
-    @Transactional
     @CachePut(key = "#username")
-    public User update(String username, String password) {
-        User u = repo.findByUsername(username);
-        u.setPassword(password);
-        return repo.save(u);
+    public User update(String username, String address) {
+        return new User(username, address);
     }
 }

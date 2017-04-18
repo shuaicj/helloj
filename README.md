@@ -1,7 +1,8 @@
 # Hello Java!
 
 #### Supported Maven Profiles
-- h2 (active by default)
+- default (active by default)
+- h2
 - mysql
 - mongodb
 - mongoembed
