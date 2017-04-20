@@ -1,9 +1,5 @@
 package shuaicj.hello.persist.redis.serializer;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,6 +20,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Test spring Jackson2JsonRedisSerializer.
  *
+ * User("shuaicj", new User.Address("china", "cd")) will be stored as:
+ *   k - my:key:jacksonser
+ *   v - {username:"shuaicj",address:{country:"china",city:"cd"}}
+ *
  * @author shuaicj 2017/04/19
  */
 @RunWith(SpringRunner.class)
@@ -31,7 +31,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @IfProfileValue(name = "spring.profiles.active", value = "redis")
 public class JacksonSerializerTest {
 
-    private static final String KEY = "my:key:jacksons";
+    private static final String KEY = "my:key:jacksonser";
 
     @Autowired
     RedisTemplate<String, User> redis;
@@ -65,24 +65,6 @@ public class JacksonSerializerTest {
             redis.setKeySerializer(new StringRedisSerializer());
             redis.setValueSerializer(new Jackson2JsonRedisSerializer<>(User.class));
             return redis;
-        }
-    }
-
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    static final class User {
-
-        private String username;
-        private Address address;
-
-        @Getter
-        @Setter
-        @NoArgsConstructor
-        @AllArgsConstructor
-        static final class Address {
-            private String country, city;
         }
     }
 }
