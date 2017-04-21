@@ -2,6 +2,7 @@ package shuaicj.hello.autoboxing;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -11,6 +12,10 @@ import static org.junit.Assert.assertTrue;
  * 2. Literal assignment and valueOf return:
  *     2.1 cached Integer [-128,127]
  *     2.2 new Integer object if out of the range
+ * 3. 'Integer == int' causes auto-unboxing.
+ * 4. 'Integer.equals(int)' method causes auto-boxing.
+ * 5. The math operators like '+' cause auto-unboxing.
+ * 6. Auto-unboxing a null value will throw NullPointerException.
  *
  * The range may be controlled by the {@code -XX:AutoBoxCacheMax=<size>} jvm option.
  *
@@ -78,5 +83,54 @@ public class IntegerTest {
         Long o7 = 128L;
         Long o8 = Long.valueOf(128L);
         assertTrue(o7 != o8);
+    }
+
+    @Test
+    public void testEqualOps() {
+        Integer i = 1000, j = 1000;
+        int k = 1000;
+        assertTrue(i != j);
+        assertTrue(i == k);
+        assertTrue(j == k);
+    }
+
+    @Test
+    public void testEqualOpsLong() {
+        Long i = 1000L, j = 1000L;
+        int k = 1000;
+        assertTrue(i != j);
+        assertTrue(i == k);
+        assertTrue(j == k);
+    }
+
+    @SuppressWarnings("EqualsBetweenInconvertibleTypes")
+    @Test
+    public void testEquals() {
+        Integer i = 1000;
+        Long j = 1000L;
+        int k = 1000;
+        long m = 1000L;
+        assertFalse(i.equals(j));
+        assertTrue(i.equals(k));
+        assertTrue(j.equals(m));
+        assertFalse(i.equals(m));
+        assertFalse(j.equals(k));
+    }
+
+    @SuppressWarnings("EqualsBetweenInconvertibleTypes")
+    @Test
+    public void testMathOps() {
+        Integer i = 1000;
+        int j = 2000;
+        Long k = 3000L;
+        assertTrue(k == (i + j));
+        assertFalse(k.equals(i + j));
+    }
+
+    @SuppressWarnings({"unused", "UnnecessaryLocalVariable"})
+    @Test(expected = NullPointerException.class)
+    public void testNull() {
+        Integer i = null;
+        int j = i;
     }
 }
