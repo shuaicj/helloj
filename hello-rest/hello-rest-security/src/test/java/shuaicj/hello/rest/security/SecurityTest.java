@@ -5,10 +5,13 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.logout;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated;
@@ -30,24 +33,33 @@ public class SecurityTest {
     private MockMvc mockMvc;
 
     @Test
-    public void accessUnprotected() throws Exception {
+    public void unprotected() throws Exception {
         mockMvc.perform(get("/hello")).andExpect(status().isOk());
     }
 
     @Test
-    public void accessProtected() throws Exception {
+    public void unauthorized() throws Exception {
         mockMvc.perform(get("/me")).andExpect(status().isUnauthorized());
     }
 
     @Test
-    public void accessProtectedWithAuth() throws Exception {
+    public void auth() throws Exception {
         mockMvc.perform(get("/me").with(httpBasic("shuaicj", "shuaicj")))
                 .andExpect(status().isOk()).andExpect(authenticated());
     }
 
     @Test
-    public void accessLogout() throws Exception {
-        mockMvc.perform(post("/logout")).andExpect(status().isForbidden());
+    public void signout() throws Exception {
         mockMvc.perform(logout()).andExpect(status().isFound()).andExpect(unauthenticated());
+    }
+
+    @Test
+    public void session() throws Exception {
+        MvcResult result = mockMvc.perform(get("/me").with(httpBasic("shuaicj", "shuaicj")))
+                .andExpect(status().isOk()).andExpect(authenticated()).andReturn();
+        MockHttpSession sess = (MockHttpSession) result.getRequest().getSession(false);
+        mockMvc.perform(get("/me").session(sess)).andExpect(status().isOk()).andExpect(authenticated());
+        mockMvc.perform(post("/logout").with(csrf()).session(sess)).andExpect(unauthenticated());
+        mockMvc.perform(get("/me")).andExpect(status().isUnauthorized()).andExpect(unauthenticated());
     }
 }
