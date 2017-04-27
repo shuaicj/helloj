@@ -3,6 +3,8 @@ package shuaicj.hello.rest.security;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
+
 /**
  * A controller mapping "/me".
  *
@@ -12,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class MeController {
 
     @GetMapping("/me")
-    public String hello() {
-        return "me";
+    public String me(Principal user) {
+        return user.getName();
     }
 }
 
