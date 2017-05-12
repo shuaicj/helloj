@@ -1,8 +1,9 @@
 package shuaicj.hello.rest.security;
 
-import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -11,8 +12,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
-import static java.util.Collections.emptyList;
+import java.time.Instant;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Authenticate requests with header 'Authorization: Bearer jwt-token'.
@@ -33,18 +35,23 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
         String token = req.getHeader(config.getHeader());
         if (token != null && token.startsWith(config.getPrefix() + " ")) {
             token = token.replace(config.getPrefix() + " ", "");
-            UsernamePasswordAuthenticationToken auth = null;
             try {
-                String user = Jwts.parser()
+                Claims claims = Jwts.parser()
                         .setSigningKey(config.getSecret())
                         .parseClaimsJws(token)
-                        .getBody()
-                        .getSubject();
-                if (user != null) {
-                    auth = new UsernamePasswordAuthenticationToken(user, null, emptyList());
+                        .getBody();
+                String username = claims.getSubject();
+                Instant expireAt = claims.getExpiration().toInstant();
+                @SuppressWarnings("unchecked")
+                List<String> authorities = claims.get("authorities", List.class);
+                if (username != null && Instant.now().isBefore(expireAt)) {
+                    UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(username, null,
+                            authorities.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
+                    SecurityContextHolder.getContext().setAuthentication(auth);
                 }
-            } catch (JwtException ignore) {}
-            SecurityContextHolder.getContext().setAuthentication(auth);
+            } catch (Exception ignore) {
+                SecurityContextHolder.clearContext();
+            }
         }
         filterChain.doFilter(req, rsp);
     }

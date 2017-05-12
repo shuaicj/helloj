@@ -10,7 +10,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.logout;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated;
@@ -31,36 +30,53 @@ public class SecurityTest {
     private MockMvc mockMvc;
 
     @Test
-    public void unprotected() throws Exception {
+    @WithMockUser(username = "admin", roles = {"ADMIN", "USER"})
+    public void mockUserViaAnnotation() throws Exception {
+        mockMvc.perform(get("/admin")).andExpect(status().isOk())
+                .andExpect(status().isOk())
+                .andExpect(authenticated().withUsername("admin").withRoles("ADMIN", "USER"));
+    }
+
+    @Test
+    public void mockUserViaMethod() throws Exception {
+        mockMvc.perform(get("/admin").with(user("admin").password("admin").roles("ADMIN", "USER")))
+                .andExpect(status().isOk())
+                .andExpect(authenticated().withUsername("admin").withRoles("ADMIN", "USER"));
+    }
+
+    @Test
+    public void accessAsAnonymous() throws Exception {
         mockMvc.perform(get("/hello")).andExpect(status().isOk());
-    }
-
-    @Test
-    public void unauthorized() throws Exception {
         mockMvc.perform(get("/me")).andExpect(status().isUnauthorized());
+        mockMvc.perform(get("/admin")).andExpect(status().isUnauthorized())
+                .andExpect(unauthenticated());
     }
 
     @Test
-    public void basic() throws Exception {
-        mockMvc.perform(get("/me").with(httpBasic("shuaicj", "shuaicj")))
-                .andExpect(status().isOk()).andExpect(authenticated().withUsername("shuaicj"));
+    @WithMockUser(username = "shuaicj", roles = "USER")
+    public void accessAsUser() throws Exception {
+        mockMvc.perform(get("/hello")).andExpect(status().isOk());
+        mockMvc.perform(get("/me")).andExpect(status().isOk());
+        mockMvc.perform(get("/admin")).andExpect(status().isForbidden()).andExpect(authenticated());
     }
 
     @Test
-    public void auth() throws Exception {
-        mockMvc.perform(get("/me").with(user("shuaicj").password("shuaicj").roles("ADMIN")))
-                .andExpect(status().isOk()).andExpect(authenticated().withUsername("shuaicj"));
-    }
-
-    @Test
-    @WithMockUser(username = "shuaicj", roles = "ADMIN")
-    public void mock() throws Exception {
-        mockMvc.perform(get("/me")).andExpect(status().isOk()).andExpect(authenticated().withUsername("shuaicj"));
+    @WithMockUser(username = "admin", roles = {"ADMIN", "USER"})
+    public void accessAsAdmin() throws Exception {
+        mockMvc.perform(get("/hello")).andExpect(status().isOk());
+        mockMvc.perform(get("/me")).andExpect(status().isOk());
+        mockMvc.perform(get("/admin")).andExpect(status().isOk());
     }
 
     @Test
     public void signout() throws Exception {
         mockMvc.perform(logout()).andExpect(status().isFound()).andExpect(unauthenticated());
+    }
+
+    @Test
+    public void httpBasicAuth() throws Exception {
+        // mockMvc.perform(get("/me").with(httpBasic("shuaicj", "shuaicj")))
+        //         .andExpect(status().isOk()).andExpect(authenticated().withUsername("shuaicj"));
     }
 
     @Test

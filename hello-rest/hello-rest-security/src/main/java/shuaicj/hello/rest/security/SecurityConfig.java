@@ -22,41 +22,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("admin").password("admin").roles("ADMIN").and()
+                .withUser("admin").password("admin").roles("ADMIN", "USER").and()
                 .withUser("shuaicj").password("shuaicj").roles("USER");
     }
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable();
-        httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        httpSecurity.anonymous();
-        httpSecurity.exceptionHandling().authenticationEntryPoint(new JwtAuthenticationEntryPoint());
         httpSecurity
-                .addFilterAt(new JwtUsernamePasswordAuthenticationFilter(config, authenticationManager()),
-                        UsernamePasswordAuthenticationFilter.class)
-                .addFilterAfter(new JwtTokenAuthenticationFilter(config),
-                        JwtUsernamePasswordAuthenticationFilter.class)
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                // .and()
+                //     .anonymous()
+                .and()
+                    .addFilterAt(new JwtUsernamePasswordAuthenticationFilter(config, authenticationManager()),
+                            UsernamePasswordAuthenticationFilter.class)
+                    .addFilterAfter(new JwtTokenAuthenticationFilter(config),
+                            JwtUsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers(config.getUrl()).permitAll()
-                .antMatchers("/hello").permitAll()
-                .antMatchers("/admin").hasRole("ADMIN")
-                .anyRequest().authenticated();
-        // httpSecurity
-        //         .csrf().disable()
-        //         .anonymous()
-        //         .and()
-        //             .exceptionHandling().authenticationEntryPoint(new JwtAuthenticationEntryPoint())
-        //         .and()
-        //             .addFilterAt(new JwtUsernamePasswordAuthenticationFilter(config, authenticationManager()),
-        //                     UsernamePasswordAuthenticationFilter.class)
-        //             .addFilterAfter(new JwtTokenAuthenticationFilter(config),
-        //                     JwtUsernamePasswordAuthenticationFilter.class)
-        //         .authorizeRequests()
-        //             .antMatchers(config.getUrl()).permitAll()
-        //             .antMatchers("/hello").permitAll()
-        //             .antMatchers("/admin").hasRole("ADMIN")
-        //             .anyRequest().authenticated();
+                    .antMatchers(config.getUrl()).permitAll()
+                    .antMatchers("/hello").permitAll()
+                    .antMatchers("/admin").hasRole("ADMIN")
+                    .anyRequest().authenticated();
     }
 }
 
