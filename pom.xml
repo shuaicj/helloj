@@ -46,6 +46,7 @@
         <module>hello-docker</module>
         <module>hello-tomcat-dir</module>
         <module>hello-exception</module>
+        <module>hello-varargs</module>
     </modules>
 
     <properties>
