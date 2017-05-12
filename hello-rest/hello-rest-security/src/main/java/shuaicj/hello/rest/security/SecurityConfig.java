@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * Test simple http authentication.
@@ -14,20 +15,48 @@ import org.springframework.security.config.http.SessionCreationPolicy;
  */
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private JwtAuthenticationConfig config;
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("shuaicj").password("shuaicj").roles("ADMIN");
+                .withUser("admin").password("admin").roles("ADMIN").and()
+                .withUser("shuaicj").password("shuaicj").roles("USER");
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.csrf().disable();
+        httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        httpSecurity.anonymous();
+        httpSecurity.exceptionHandling().authenticationEntryPoint(new JwtAuthenticationEntryPoint());
+        httpSecurity
+                .addFilterAt(new JwtUsernamePasswordAuthenticationFilter(config, authenticationManager()),
+                        UsernamePasswordAuthenticationFilter.class)
+                .addFilterAfter(new JwtTokenAuthenticationFilter(config),
+                        JwtUsernamePasswordAuthenticationFilter.class)
+                .authorizeRequests()
+                .antMatchers(config.getUrl()).permitAll()
                 .antMatchers("/hello").permitAll()
-                .anyRequest().hasRole("ADMIN")
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().httpBasic()
-                .and().csrf().disable();
+                .antMatchers("/admin").hasRole("ADMIN")
+                .anyRequest().authenticated();
+        // httpSecurity
+        //         .csrf().disable()
+        //         .anonymous()
+        //         .and()
+        //             .exceptionHandling().authenticationEntryPoint(new JwtAuthenticationEntryPoint())
+        //         .and()
+        //             .addFilterAt(new JwtUsernamePasswordAuthenticationFilter(config, authenticationManager()),
+        //                     UsernamePasswordAuthenticationFilter.class)
+        //             .addFilterAfter(new JwtTokenAuthenticationFilter(config),
+        //                     JwtUsernamePasswordAuthenticationFilter.class)
+        //         .authorizeRequests()
+        //             .antMatchers(config.getUrl()).permitAll()
+        //             .antMatchers("/hello").permitAll()
+        //             .antMatchers("/admin").hasRole("ADMIN")
+        //             .anyRequest().authenticated();
     }
 }
 
