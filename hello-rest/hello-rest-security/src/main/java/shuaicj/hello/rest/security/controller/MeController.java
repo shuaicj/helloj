@@ -1,4 +1,4 @@
-package shuaicj.hello.rest.security;
+package shuaicj.hello.rest.security.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -6,15 +6,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
 
 /**
- * A controller mapping "/admin".
+ * A controller mapping "/me".
  *
- * @author shuaicj 2017/05/12
+ * @author shuaicj 2017/04/26
  */
 @RestController
-public class AdminController {
+public class MeController {
 
-    @GetMapping("/admin")
-    public String admin(Principal user) {
+    @GetMapping("/me")
+    public String me(Principal user) {
         return user.getName();
     }
 }

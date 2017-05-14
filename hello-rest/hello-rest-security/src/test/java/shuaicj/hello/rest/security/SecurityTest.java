@@ -9,11 +9,11 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.logout;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -45,7 +45,7 @@ public class SecurityTest {
     }
 
     @Test
-    public void accessAsAnonymous() throws Exception {
+    public void accessAsUnauth() throws Exception {
         mockMvc.perform(get("/hello")).andExpect(status().isOk());
         mockMvc.perform(get("/me")).andExpect(status().isUnauthorized());
         mockMvc.perform(get("/admin")).andExpect(status().isUnauthorized())
@@ -69,23 +69,55 @@ public class SecurityTest {
     }
 
     @Test
-    public void signout() throws Exception {
-        mockMvc.perform(logout()).andExpect(status().isFound()).andExpect(unauthenticated());
+    public void accessByTokenAsUser() throws Exception {
+        String token = mockMvc.perform(post("/auth")
+                .content("{\"username\":\"shuaicj\",\"password\":\"shuaicj\"}"))
+                .andExpect(status().isOk()).andReturn().getResponse().getHeader("Authorization");
+        mockMvc.perform(get("/hello").header("Authorization", token))
+                .andExpect(status().isOk())
+                .andExpect(authenticated().withUsername("shuaicj").withRoles("USER"));
+        mockMvc.perform(get("/me").header("Authorization", token))
+                .andExpect(status().isOk())
+                .andExpect(authenticated().withUsername("shuaicj").withRoles("USER"));
+        mockMvc.perform(get("/admin").header("Authorization", token))
+                .andExpect(status().isForbidden())
+                .andExpect(authenticated().withUsername("shuaicj").withRoles("USER"));
     }
 
     @Test
-    public void httpBasicAuth() throws Exception {
-        // mockMvc.perform(get("/me").with(httpBasic("shuaicj", "shuaicj")))
-        //         .andExpect(status().isOk()).andExpect(authenticated().withUsername("shuaicj"));
+    public void accessByTokenAsAdmin() throws Exception {
+        String token = mockMvc.perform(post("/auth")
+                .content("{\"username\":\"admin\",\"password\":\"admin\"}"))
+                .andExpect(status().isOk()).andReturn().getResponse().getHeader("Authorization");
+        mockMvc.perform(get("/hello").header("Authorization", token))
+                .andExpect(status().isOk())
+                .andExpect(authenticated().withUsername("admin").withRoles("ADMIN", "USER"));
+        mockMvc.perform(get("/me").header("Authorization", token))
+                .andExpect(status().isOk())
+                .andExpect(authenticated().withUsername("admin").withRoles("ADMIN", "USER"));
+        mockMvc.perform(get("/admin").header("Authorization", token))
+                .andExpect(status().isOk())
+                .andExpect(authenticated().withUsername("admin").withRoles("ADMIN", "USER"));
     }
 
-    @Test
-    public void session() throws Exception {
-        // MvcResult result = mockMvc.perform(get("/me").with(httpBasic("shuaicj", "shuaicj")))
-        //         .andExpect(status().isOk()).andExpect(authenticated()).andReturn();
-        // MockHttpSession sess = (MockHttpSession) result.getRequest().getSession(false);
-        // mockMvc.perform(get("/me").session(sess)).andExpect(status().isOk()).andExpect(authenticated());
-        // mockMvc.perform(post("/logout").with(csrf()).session(sess)).andExpect(unauthenticated());
-        // mockMvc.perform(get("/me")).andExpect(status().isUnauthorized()).andExpect(unauthenticated());
-    }
+    // @Test
+    // public void signout() throws Exception {
+    //     mockMvc.perform(logout()).andExpect(status().isFound()).andExpect(unauthenticated());
+    // }
+    //
+    // @Test
+    // public void httpBasicAuth() throws Exception {
+    //     mockMvc.perform(get("/me").with(httpBasic("shuaicj", "shuaicj")))
+    //             .andExpect(status().isOk()).andExpect(authenticated().withUsername("shuaicj"));
+    // }
+    //
+    // @Test
+    // public void session() throws Exception {
+    //     MvcResult result = mockMvc.perform(get("/me").with(httpBasic("shuaicj", "shuaicj")))
+    //             .andExpect(status().isOk()).andExpect(authenticated()).andReturn();
+    //     MockHttpSession sess = (MockHttpSession) result.getRequest().getSession(false);
+    //     mockMvc.perform(get("/me").session(sess)).andExpect(status().isOk()).andExpect(authenticated());
+    //     mockMvc.perform(post("/logout").with(csrf()).session(sess)).andExpect(unauthenticated());
+    //     mockMvc.perform(get("/me")).andExpect(status().isUnauthorized()).andExpect(unauthenticated());
+    // }
 }

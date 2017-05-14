@@ -1,4 +1,4 @@
-package shuaicj.hello.rest.security;
+package shuaicj.hello.rest.security.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;

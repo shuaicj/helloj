@@ -1,4 +1,4 @@
-package shuaicj.hello.rest.security;
+package shuaicj.hello.rest.security.config;
 
 import lombok.Getter;
 import lombok.ToString;

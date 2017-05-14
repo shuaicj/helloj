@@ -1,4 +1,4 @@
-package shuaicj.hello.rest.security;
+package shuaicj.hello.rest.security.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
