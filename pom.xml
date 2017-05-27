@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>shuaicj.hello</groupId>
+    <groupId>shuaicj.hello.java</groupId>
     <artifactId>hello-java-parent</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
