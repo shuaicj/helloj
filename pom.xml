@@ -47,6 +47,7 @@
         <module>hello-tomcat-dir</module>
         <module>hello-exception</module>
         <module>hello-varargs</module>
+        <module>hello-actuator</module>
     </modules>
 
     <properties>

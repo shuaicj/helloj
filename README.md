@@ -10,6 +10,7 @@
 - hive
 
 #### Basic Info For Modules
+- **hello-actuator** - usage of `spring boot actuator`
 - **hello-arrays-aslist** - usage of java `Arrays.asList()`
 - **hello-assert** - usage of java `assert`
 - **hello-autoboxing** - java autoboxing
