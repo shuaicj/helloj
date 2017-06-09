@@ -23,6 +23,7 @@
 - **hello-enum** - usage of java `enum` type
 - **hello-exception** - how uncaught exception propagates
 - **hello-float** - detail of java float `0.0f`, `-0.0f`, `Float.NaN`, `Float.INFINITY`
+- **hello-jce-policy** - oracle jce policy test
 - **hello-log** - about logging
     - **hello-log-jcl** - usage of apache `commons-logging`
     - **hello-log-jul** - usage of `java.util.logging`
