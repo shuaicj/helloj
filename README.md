@@ -1,6 +1,5 @@
 # Hello Java!
 
-#### Description
 Examples for learning Java.
 
 #### Supported Maven Profiles
