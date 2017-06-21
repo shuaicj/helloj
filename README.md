@@ -1,5 +1,8 @@
 # Hello Java!
 
+#### Description
+Examples for learning Java.
+
 #### Supported Maven Profiles
 - default (active by default)
 - h2
