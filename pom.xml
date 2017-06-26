@@ -49,6 +49,7 @@
         <module>hello-varargs</module>
         <module>hello-actuator</module>
         <module>hello-jce-policy</module>
+        <module>hello-amqp</module>
     </modules>
 
     <properties>
