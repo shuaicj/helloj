@@ -1,4 +1,4 @@
-package shuaicj.hello.amqp.producer;
+package shuaicj.hello.amqp.basic.producer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +26,6 @@ public class Producer {
     public void send() {
         String message = "Hello Message " + (count++) + "!";
         logger.info("send message: {}", message);
-        rabbit.convertAndSend("hello-q", message);
+        rabbit.convertAndSend(Application.Q, message);
     }
 }

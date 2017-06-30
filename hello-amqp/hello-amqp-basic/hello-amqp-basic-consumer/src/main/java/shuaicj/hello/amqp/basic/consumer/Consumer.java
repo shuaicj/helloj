@@ -1,4 +1,4 @@
-package shuaicj.hello.amqp.consumer;
+package shuaicj.hello.amqp.basic.consumer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,7 +6,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 /**
- * The message consumer.
+ * The message producer.
  *
  * @author shuaicj 2017/06/26
  */

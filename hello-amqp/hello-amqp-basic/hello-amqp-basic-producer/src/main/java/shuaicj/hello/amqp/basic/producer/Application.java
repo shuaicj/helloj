@@ -1,9 +1,10 @@
-package shuaicj.hello.amqp.consumer;
+package shuaicj.hello.amqp.basic.producer;
 
 import org.springframework.amqp.core.Queue;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * Spring boot app.
@@ -11,13 +12,14 @@ import org.springframework.context.annotation.Bean;
  * @author shuaicj 2017/06/26
  */
 @SpringBootApplication
+@EnableScheduling
 public class Application {
 
-    static final String Q = "hello-q";
+    static final String Q = "hello-q-basic";
 
     @Bean
     Queue queue() {
-        return new Queue(Q, false);
+        return new Queue(Q);
     }
 
     public static void main(String[] args) {
