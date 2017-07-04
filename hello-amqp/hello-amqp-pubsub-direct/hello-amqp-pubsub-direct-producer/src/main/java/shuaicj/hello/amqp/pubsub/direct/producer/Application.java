@@ -18,9 +18,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 public class Application {
 
-    static final String EX = "hello-ex-direct";
-    static final String Q1 = "hello-q1-direct";
-    static final String Q2 = "hello-q2-direct";
+    static final String EX = "hello-direct-ex";
+    static final String Q1 = "hello-direct-q1";
+    static final String Q2 = "hello-direct-q2";
 
     @Bean
     DirectExchange exchange() {

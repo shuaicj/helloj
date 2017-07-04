@@ -18,10 +18,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 public class Application {
 
-    static final String EX = "hello-ex-topic";
-    static final String Q1 = "hello-q1-topic";
-    static final String Q2 = "hello-q2-topic";
-    static final String Q3 = "hello-q3-topic";
+    static final String EX = "hello-topic-ex";
+    static final String Q1 = "hello-topic-q1";
+    static final String Q2 = "hello-topic-q2";
+    static final String Q3 = "hello-topic-q3";
 
     @Bean
     TopicExchange exchange() {

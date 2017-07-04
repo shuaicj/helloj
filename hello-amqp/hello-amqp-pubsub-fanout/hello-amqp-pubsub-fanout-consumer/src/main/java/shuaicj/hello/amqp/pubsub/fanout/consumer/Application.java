@@ -16,9 +16,9 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class Application {
 
-    static final String EX = "hello-ex-fanout";
-    static final String Q1 = "hello-q1-fanout";
-    static final String Q2 = "hello-q2-fanout";
+    static final String EX = "hello-fanout-ex";
+    static final String Q1 = "hello-fanout-q1";
+    static final String Q2 = "hello-fanout-q2";
 
     @Bean
     FanoutExchange exchange() {
