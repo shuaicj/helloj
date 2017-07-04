@@ -17,8 +17,9 @@ Examples for learning Java.
     - **hello-amqp-basic** produce and consume a `String` message
     - **hello-amqp-message** produce and consume a `POJO` message
     - **hello-amqp-requeue** how to reject a message and choose whether to requeue it
-    - **hello-amqp-pubsub-fanout** exchange fanout
     - **hello-amqp-pubsub-direct** exchange direct
+    - **hello-amqp-pubsub-fanout** exchange fanout
+    - **hello-amqp-pubsub-topic** exchange topic
 - **hello-arrays-aslist** - usage of java `Arrays.asList()`
 - **hello-assert** - usage of java `assert`
 - **hello-autoboxing** - java autoboxing

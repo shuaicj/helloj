@@ -24,7 +24,7 @@ public class Producer {
 
     @Scheduled(fixedDelay = 2000L)
     public void send() {
-        String message = "Hello Message " + (count++) + "!";
+        String message = "Hello Message " + count + "!";
         if (count % 2 == 0) {
             logger.info("send message q1: {}", message);
             rabbit.convertAndSend(Application.EX, Application.Q1, message);
@@ -32,5 +32,6 @@ public class Producer {
             logger.info("send message q2: {}", message);
             rabbit.convertAndSend(Application.EX, Application.Q2, message);
         }
+        count++;
     }
 }
