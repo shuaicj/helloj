@@ -14,8 +14,10 @@ Examples for learning Java.
 #### Basic Info For Modules
 - **hello-actuator** - usage of `spring boot actuator`
 - **hello-amqp** - usage of `spring amqp`
-    - **hello-amqp-consumer** - consume amqp message
-    - **hello-amqp-producer** - produce amqp message
+    - **hello-amqp-basic** produce and consume a `String` message
+    - **hello-amqp-message** produce and consume a `POJO` message
+    - **hello-amqp-requeue** how to reject a message and choose whether to requeue it
+    - **hello-amqp-pubsub-fanout** exchange fanout
 - **hello-arrays-aslist** - usage of java `Arrays.asList()`
 - **hello-assert** - usage of java `assert`
 - **hello-autoboxing** - java autoboxing

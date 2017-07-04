@@ -11,8 +11,3 @@
 #### Verify
 - The producer will print out messages sent.
 - The consumer will receive and print messages correspondingly.
-
-#### Modules
-- **hello-amqp-basic** produce and consume a `String` message
-- **hello-amqp-message** produce and consume a `POJO` message
-- **hello-amqp-requeue** how to reject a message and choose whether to requeue it
