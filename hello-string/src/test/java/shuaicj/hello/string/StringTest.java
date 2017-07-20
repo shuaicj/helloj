@@ -84,15 +84,30 @@ public class StringTest {
 
     @Test
     public void variableAppend() throws Exception {
-        String s1 = "abc";
-        String s2 = "ab";
-        String s3 = "a";
-        String s4 = s3 + "b";
-        String s5 = s4 + "c";
-        assertTrue(s2.equals(s4));
-        assertTrue(s2 != s4);
-        assertTrue(s1.equals(s5));
-        assertTrue(s1 != s5);
+        String abc = "abc";
+        String ab = "ab";
+        String a = "a";
+        String s1 = a + "b";
+        String s2 = s1 + "c";
+        assertTrue(s1.equals(ab));
+        assertTrue(s1 != ab);
+        assertTrue(s2.equals(abc));
+        assertTrue(s2 != abc);
+    }
+
+    @Test
+    public void variableAppendFinal() throws Exception {
+        String ab = "ab";
+        String a = "a";
+        String b = "b";
+        final String fa = "a";
+        final String fb = "b";
+        assertTrue(a + b != ab);
+        assertTrue(a + fb != ab);
+        assertTrue("a" + fb == ab);
+        assertTrue(fa + b != ab);
+        assertTrue(fa + "b" == ab);
+        assertTrue(fa + fb == ab);
     }
 
     @SuppressWarnings("UnnecessaryLocalVariable")
