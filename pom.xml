@@ -35,7 +35,6 @@
         <module>hello-threadpool</module>
         <module>hello-string</module>
         <module>hello-enum</module>
-        <module>hello-log</module>
         <module>hello-assert</module>
         <module>hello-autoboxing</module>
         <module>hello-thread-stop</module>
