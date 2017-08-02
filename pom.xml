@@ -24,7 +24,6 @@
         <module>hello-deadlock</module>
         <module>hello-schedule</module>
         <module>hello-commons-cli</module>
-        <module>hello-maven-plugin</module>
         <module>hello-persist</module>
         <module>hello-resource-path</module>
         <module>hello-digest-utils</module>
