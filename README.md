@@ -2,16 +2,7 @@
 
 Examples for learning Java.
 
-#### Supported Maven Profiles
-- default (active by default)
-- h2
-- mysql
-- mongodb
-- mongoembed
-- redis
-- hive
-
-#### Basic Info For Modules
+#### Modules
 - **hello-actuator** - usage of `spring boot actuator`
 - **hello-arrays-aslist** - usage of java `Arrays.asList()`
 - **hello-assert** - usage of java `assert`
@@ -32,16 +23,6 @@ Examples for learning Java.
 - **hello-mockito** - usage of `mockito`
 - **hello-output-capture** - use spring `OutputCapture` to test `stdout` and `stderr`
 - **hello-override** - detail of java method override
-- **hello-persist** - about persistence
-    - **hello-persist-cache** - usage of spring `@CacheConfig`, `@Cacheable`, `@CacheEvict`, `@CachePut`
-    - **hello-persist-db-init** - use sql scripts to init db
-    - **hello-persist-hive** - apache hive jdbc usage
-    - **hello-persist-jdbc-template**- usage of spring `JdbcTemplate`
-    - **hello-persist-jpa** - usage of `spring data JPA`
-    - **hello-persist-kv** - usage of `spring data keyvalue`
-    - **hello-persist-mongo** - usage of `spring data MongoDB`
-    - **hello-persist-redis** - usage of `spring data redis`
-    - **hello-persist-transaction** - usage of spring `@Transactional`
 - **hello-reference** - java `StrongReference`, `SoftReference`, `WeakReference`, `PhantomReference`
 - **hello-resource-path** - get file path in classpath
 - **hello-schedule** - spring `@EnableScheduling` and `@Scheduled`
