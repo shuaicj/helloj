@@ -9,6 +9,7 @@ Examples for learning Java.
 - **hello-autoboxing** - java autoboxing
 - **hello-command-line-runner** - spring `CommandLineRunner` and `@Order`
 - **hello-commons-cli** - usage of apache `commons-cli`
+- **hello-constant-interface** - `Constant Interface Anti-Pattern` is evil
 - **hello-cpu-num** - how to get cpu number
 - **hello-deadlock** - emulate deadlock
 - **hello-digest-utils** - usage of spring `DigestUtils`
