@@ -46,6 +46,7 @@
         <module>hello-actuator</module>
         <module>hello-jce-policy</module>
         <module>hello-constant-interface</module>
+        <module>hello-interface-default-method</module>
     </modules>
 
     <properties>

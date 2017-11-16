@@ -17,6 +17,7 @@ Examples for learning Java.
 - **hello-enum** - usage of java `enum` type
 - **hello-exception** - how uncaught exception propagates
 - **hello-float** - detail of java float `0.0f`, `-0.0f`, `Float.NaN`, `Float.INFINITY`
+- **hello-interface-default-method** - default method in interface
 - **hello-jce-policy** - oracle jce policy test
 - **hello-lombok** - usage of `lombok`, including `@Getter`, `@Setter`, types of `@Constructor`, etc
 - **hello-math** - simple math
