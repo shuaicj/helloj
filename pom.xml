@@ -47,6 +47,7 @@
         <module>hello-jce-policy</module>
         <module>hello-constant-interface</module>
         <module>hello-interface-default-method</module>
+        <module>hello-scheduled-executor</module>
     </modules>
 
     <properties>

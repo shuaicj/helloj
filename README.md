@@ -28,6 +28,7 @@ Examples for learning Java.
 - **hello-reference** - java `StrongReference`, `SoftReference`, `WeakReference`, `PhantomReference`
 - **hello-resource-path** - get file path in classpath
 - **hello-schedule** - spring `@EnableScheduling` and `@Scheduled`
+- **hello-scheduled-executor** - usage of `ScheduledExecutorService`
 - **hello-sqlite** - usage of `sqlite`
 - **hello-sshj** - usage of `SSHJ`
 - **hello-string** - detail of java string and string pool
