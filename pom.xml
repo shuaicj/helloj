@@ -48,6 +48,7 @@
         <module>hello-constant-interface</module>
         <module>hello-interface-default-method</module>
         <module>hello-scheduled-executor</module>
+        <module>hello-guava</module>
     </modules>
 
     <properties>
@@ -74,6 +75,11 @@
                 <groupId>com.hierynomus</groupId>
                 <artifactId>sshj</artifactId>
                 <version>0.18.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>23.6-jre</version>
             </dependency>
             <dependency>
                 <groupId>org.assertj</groupId>
