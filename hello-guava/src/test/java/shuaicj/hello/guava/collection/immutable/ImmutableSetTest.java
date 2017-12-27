@@ -1,6 +1,7 @@
 package shuaicj.hello.guava.collection.immutable;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import java.util.Arrays;
 
@@ -14,6 +15,13 @@ import org.junit.Test;
  * @author shuaicj 2017/12/26
  */
 public class ImmutableSetTest {
+
+    @Test
+    @SuppressWarnings("deprecation")
+    public void immutable() {
+        ImmutableSet<String> set = ImmutableSet.of("a", "b", "c", "b");
+        assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() -> set.add("e"));
+    }
 
     @Test
     public void testImmutableSet() {
