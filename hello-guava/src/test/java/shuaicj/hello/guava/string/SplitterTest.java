@@ -1,4 +1,4 @@
-package shuaicj.hello.guava.collection.util.string;
+package shuaicj.hello.guava.string;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
