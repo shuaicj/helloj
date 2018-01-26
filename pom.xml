@@ -49,10 +49,11 @@
         <module>hello-interface-default-method</module>
         <module>hello-scheduled-executor</module>
         <module>hello-guava</module>
+        <module>hello-runtime-version</module>
     </modules>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>1.9</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
