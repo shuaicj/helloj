@@ -50,6 +50,7 @@
         <module>hello-scheduled-executor</module>
         <module>hello-guava</module>
         <module>hello-runtime-version</module>
+        <module>hello-regex</module>
     </modules>
 
     <properties>

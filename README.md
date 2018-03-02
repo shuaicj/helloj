@@ -27,6 +27,7 @@ Examples for learning Java.
 - **hello-output-capture** - use spring `OutputCapture` to test `stdout` and `stderr`
 - **hello-override** - detail of java method override
 - **hello-reference** - java `StrongReference`, `SoftReference`, `WeakReference`, `PhantomReference`
+- **hello-regex** - java regex `Pattern`
 - **hello-resource-path** - get file path in classpath
 - **hello-runtime-version** - usage of `java.lang.Runtime.Version` in Java 9
 - **hello-schedule** - spring `@EnableScheduling` and `@Scheduled`
