@@ -51,6 +51,7 @@
         <module>hello-guava</module>
         <module>hello-runtime-version</module>
         <module>hello-regex</module>
+        <module>hello-ip-hostname</module>
     </modules>
 
     <properties>

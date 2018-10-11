@@ -19,6 +19,7 @@ Examples for learning Java.
 - **hello-float** - detail of java float `0.0f`, `-0.0f`, `Float.NaN`, `Float.INFINITY`
 - **hello-guava** - usage of google `guava` library
 - **hello-interface-default-method** - default method in interface
+- **hello-ip-hostname** - get all IPs and hostnames of current machine
 - **hello-jce-policy** - oracle jce policy test
 - **hello-lombok** - usage of `lombok`, including `@Getter`, `@Setter`, types of `@Constructor`, etc
 - **hello-math** - simple math
