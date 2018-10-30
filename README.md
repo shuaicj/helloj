@@ -24,7 +24,7 @@ Examples for learning Java.
 - **hello-lombok** - usage of `lombok`, including `@Getter`, `@Setter`, types of `@Constructor`, etc
 - **hello-math** - simple math
 - **hello-memory-leak** - emulate memory leak
-- **hello-mockito** - usage of `mockito`
+- **hello-mockito** - usage of `mockito` and `powermock`
 - **hello-output-capture** - use spring `OutputCapture` to test `stdout` and `stderr`
 - **hello-override** - detail of java method override
 - **hello-reference** - java `StrongReference`, `SoftReference`, `WeakReference`, `PhantomReference`
