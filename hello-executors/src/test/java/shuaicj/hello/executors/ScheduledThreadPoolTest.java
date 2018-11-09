@@ -1,4 +1,4 @@
-package shuaicj.hello.scheduled.executor;
+package shuaicj.hello.executors;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Test;
 
 /**
- * Test what happens when {@link java.util.concurrent.ScheduledExecutorService}
+ * Test what happens when {@link ScheduledExecutorService}
  * has no thread to allocate for task executions.
  *
  * Conclusion: the task will be queued FIFO until there is an work thread available.
@@ -17,7 +17,7 @@ import org.junit.Test;
  *
  * @author shuaicj 2017/12/13
  */
-public class ScheduledExecutorTest {
+public class ScheduledThreadPoolTest {
 
     /**
      * These three lines will be printed out immediately (order is not guaranteed):

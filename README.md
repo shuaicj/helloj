@@ -16,6 +16,7 @@ Examples for learning Java.
 - **hello-docker** - how to package docker image
 - **hello-enum** - usage of java `enum` type
 - **hello-exception** - how uncaught exception propagates
+- **hello-executors** - usage of java `Executors`
 - **hello-float** - detail of java float `0.0f`, `-0.0f`, `Float.NaN`, `Float.INFINITY`
 - **hello-guava** - usage of google `guava` library
 - **hello-interface-default-method** - default method in interface
@@ -32,11 +33,9 @@ Examples for learning Java.
 - **hello-resource-path** - get file path in classpath
 - **hello-runtime-version** - usage of `java.lang.Runtime.Version` in Java 9
 - **hello-schedule** - spring `@EnableScheduling` and `@Scheduled`
-- **hello-scheduled-executor** - usage of `ScheduledExecutorService`
 - **hello-sqlite** - usage of `sqlite`
 - **hello-sshj** - usage of `SSHJ`
 - **hello-string** - detail of java string and string pool
 - **hello-thread-stop** - comparion of stopping thread
-- **hello-threadpool** - usage of java thread pool `ExecutorService`
 - **hello-tomcat-dir** - tomcat embedded default work dir
 - **hello-varargs** - varargs `...`

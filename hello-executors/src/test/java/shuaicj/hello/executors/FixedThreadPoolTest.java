@@ -1,4 +1,4 @@
-package shuaicj.hello.threadpool;
+package shuaicj.hello.executors;
 
 import org.junit.Test;
 
@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author shuaicj 2017/02/04
  */
-public class ThreadPoolTest {
+public class FixedThreadPoolTest {
 
     private ExecutorService pool = Executors.newFixedThreadPool(5);
 

@@ -29,7 +29,6 @@
         <module>hello-reference</module>
         <module>hello-float</module>
         <module>hello-override</module>
-        <module>hello-threadpool</module>
         <module>hello-string</module>
         <module>hello-enum</module>
         <module>hello-assert</module>
@@ -47,11 +46,11 @@
         <module>hello-jce-policy</module>
         <module>hello-constant-interface</module>
         <module>hello-interface-default-method</module>
-        <module>hello-scheduled-executor</module>
         <module>hello-guava</module>
         <module>hello-runtime-version</module>
         <module>hello-regex</module>
         <module>hello-ip-hostname</module>
+        <module>hello-executors</module>
     </modules>
 
     <properties>
