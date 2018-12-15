@@ -31,6 +31,7 @@ Examples for learning Java.
 - **hello-reference** - java `StrongReference`, `SoftReference`, `WeakReference`, `PhantomReference`
 - **hello-regex** - java regex `Pattern`
 - **hello-resource-path** - get file path in classpath
+- **hello-retry** - usage of `spring retry`
 - **hello-runtime-version** - usage of `java.lang.Runtime.Version` in Java 9
 - **hello-schedule** - spring `@EnableScheduling` and `@Scheduled`
 - **hello-sqlite** - usage of `sqlite`

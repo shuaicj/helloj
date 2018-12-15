@@ -51,6 +51,7 @@
         <module>hello-regex</module>
         <module>hello-ip-hostname</module>
         <module>hello-executors</module>
+        <module>hello-retry</module>
     </modules>
 
     <properties>
