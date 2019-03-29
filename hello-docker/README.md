@@ -1,5 +1,5 @@
 #### How to package
-`mvn package docker:build`
+`mvn package docker:build -pl hello-docker`
 
 #### Check the created docker image
 `docker images`
