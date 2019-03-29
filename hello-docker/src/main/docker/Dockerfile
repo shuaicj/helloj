@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-slim
+FROM shuaicj/java:8.131.11
 
 ADD hello-docker.jar app.jar
 
