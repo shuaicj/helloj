@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pets count="3">
+    <cat id="1">
+        <name>alice</name>
+        <sex>M</sex>
+        <color>YELLOW</color>
+    </cat>
+    <cat id="2">
+        <name>bob</name>
+        <sex>F</sex>
+        <color>WHITE</color>
+        <pureblood>true</pureblood>
+    </cat>
+    <dog id="3">
+        <name>cindy</name>
+        <sex>F</sex>
+        <color>BLACK</color>
+    </dog>
+</pets>

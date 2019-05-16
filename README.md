@@ -40,3 +40,4 @@ Examples for learning Java.
 - **hello-thread-stop** - comparion of stopping thread
 - **hello-tomcat-dir** - tomcat embedded default work dir
 - **hello-varargs** - varargs `...`
+- **hello-xml** - usage of `dom4j`

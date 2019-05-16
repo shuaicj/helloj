@@ -52,6 +52,7 @@
         <module>hello-ip-hostname</module>
         <module>hello-executors</module>
         <module>hello-retry</module>
+        <module>hello-xml</module>
     </modules>
 
     <properties>
