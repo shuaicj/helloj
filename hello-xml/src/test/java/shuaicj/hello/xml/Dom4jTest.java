@@ -72,8 +72,14 @@ public class Dom4jTest {
     }
 
     @Test
-    public void testXpathComplicated() throws DocumentException {
+    public void testXpathComplicated1() throws DocumentException {
         Node node = doc().selectSingleNode("//cat[pureblood[text()='true']]/name");
+        assertThat(node.getText()).isEqualTo("bob");
+    }
+
+    @Test
+    public void testXpathComplicated2() throws DocumentException {
+        Node node = doc().selectSingleNode("//cat[pureblood='true']/name");
         assertThat(node.getText()).isEqualTo("bob");
     }
 
