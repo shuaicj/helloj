@@ -53,6 +53,7 @@
         <module>hello-executors</module>
         <module>hello-retry</module>
         <module>hello-xml</module>
+        <module>hello-io</module>
     </modules>
 
     <properties>
