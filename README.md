@@ -7,6 +7,7 @@ Examples for learning Java.
 - **hello-arrays-aslist** - usage of java `Arrays.asList()`
 - **hello-assert** - usage of java `assert`
 - **hello-autoboxing** - java autoboxing
+- **hello-chinese-calendar** - conversion between solar calendar and lunar calendar
 - **hello-command-line-runner** - spring `CommandLineRunner` and `@Order`
 - **hello-commons-cli** - usage of apache `commons-cli`
 - **hello-constant-interface** - `Constant Interface Anti-Pattern` is evil

@@ -54,6 +54,7 @@
         <module>hello-retry</module>
         <module>hello-xml</module>
         <module>hello-io</module>
+        <module>hello-chinese-calendar</module>
     </modules>
 
     <properties>
@@ -90,6 +91,11 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>23.6-jre</version>
+            </dependency>
+            <dependency>
+                <groupId>net.time4j</groupId>
+                <artifactId>time4j-base</artifactId>
+                <version>5.4</version>
             </dependency>
             <dependency>
                 <groupId>org.assertj</groupId>
