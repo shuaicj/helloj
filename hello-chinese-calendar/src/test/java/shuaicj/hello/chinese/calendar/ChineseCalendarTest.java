@@ -35,9 +35,19 @@ public class ChineseCalendarTest {
     public void fromSolarToChineseNewYear() {
         PlainDate pd = PlainDate.of(2019, 2, 5);
         ChineseCalendar cc = pd.transform(ChineseCalendar.axis());
+
+        // year
         assertThat(cc.getInt(CommonElements.RELATED_GREGORIAN_YEAR)).isEqualTo(2019);
+
+        // option 1 to get month, the returned value can be in range 1-13 because there could be a leap month.
         assertThat(cc.getInt(ChineseCalendar.MONTH_AS_ORDINAL)).isEqualTo(1);
+        // option 2 to get month, the returned value is in range 1-12, and isLeap() checks if it's a leap month.
+        assertThat(cc.getMonth().getNumber()).isEqualTo(1);
+        assertThat(cc.getMonth().isLeap()).isFalse();
+
+        // two ways to get day of month
         assertThat(cc.getInt(ChineseCalendar.DAY_OF_MONTH)).isEqualTo(1);
+        assertThat(cc.getDayOfMonth()).isEqualTo(1);
     }
 
     /**
@@ -59,8 +69,18 @@ public class ChineseCalendarTest {
     public void fromSolarToChineseMidAutumn() {
         PlainDate pd = PlainDate.of(2019, 9, 13);
         ChineseCalendar cc = pd.transform(ChineseCalendar.axis());
+
+        // year
         assertThat(cc.getInt(CommonElements.RELATED_GREGORIAN_YEAR)).isEqualTo(2019);
+
+        // option 1 to get month, the returned value can be in range 1-13 because there could be a leap month.
         assertThat(cc.getInt(ChineseCalendar.MONTH_AS_ORDINAL)).isEqualTo(8);
+        // option 2 to get month, the returned value is in range 1-12, and isLeap() checks if it's a leap month.
+        assertThat(cc.getMonth().getNumber()).isEqualTo(8);
+        assertThat(cc.getMonth().isLeap()).isFalse();
+
+        // two ways to get day of month
         assertThat(cc.getInt(ChineseCalendar.DAY_OF_MONTH)).isEqualTo(15);
+        assertThat(cc.getDayOfMonth()).isEqualTo(15);
     }
 }
