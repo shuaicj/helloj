@@ -55,6 +55,7 @@
         <module>hello-xml</module>
         <module>hello-io</module>
         <module>hello-chinese-calendar</module>
+        <module>hello-configuration</module>
     </modules>
 
     <properties>

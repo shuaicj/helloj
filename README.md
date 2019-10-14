@@ -10,6 +10,7 @@ Examples for learning Java.
 - **hello-chinese-calendar** - conversion between solar calendar and lunar calendar
 - **hello-command-line-runner** - spring `CommandLineRunner` and `@Order`
 - **hello-commons-cli** - usage of apache `commons-cli`
+- **hello-configuration** - test `@Configuration` and `@TestConfiguration`
 - **hello-constant-interface** - `Constant Interface Anti-Pattern` is evil
 - **hello-cpu-num** - how to get cpu number
 - **hello-deadlock** - emulate deadlock
